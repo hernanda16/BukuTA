@@ -1,0 +1,54 @@
+% [TEMPLATE] Isi tabel berikut dengan jadwal/rencana kegiatan penelitian.
+% Demonstrasi: timeline table dengan \cellcolor, \multirow, \resizebox.
+
+\sloppy
+Tahap pertama dalam penelitian ini adalah studi literatur untuk memahami konsep dasar dan teknologi yang relevan dengan topik penelitian.
+
+Setelah memahami landasan teori, tahap berikutnya adalah perancangan sistem. Pada tahap ini dilakukan perancangan perangkat keras dan perangkat lunak.
+
+Selanjutnya dilakukan implementasi dan pengujian sistem untuk memastikan fungsi yang diharapkan.
+
+Tahap terakhir adalah analisis hasil dan penulisan laporan tugas akhir.
+
+Rencana jadwal kegiatan pengerjaan tugas akhir dapat dilihat pada Tabel \ref{tbl:timeline} berikut:
+
+\newcommand{\w}{}
+\newcommand{\G}{\cellcolor{gray}}
+\begin{table}[H]
+  \captionof{table}{Timeline Kegiatan Penelitian}
+  \label{tbl:timeline}
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|p{5.5cm}|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    \multirow{2}{*}{Kegiatan} & \multicolumn{16}{c|}{Minggu} \\
+    \cline{2-17}
+    & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 \\
+    \hline
+
+    Studi Literatur &
+    \G & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
+    \hline
+
+    Perancangan Sistem &
+    \w & \w & \w & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
+    \hline
+
+    Implementasi &
+    \w & \w & \w & \w & \G & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w \\
+    \hline
+
+    Pengujian &
+    \w & \w & \w & \w & \w & \w & \w & \G & \G & \G & \G & \w & \w & \w & \w & \w \\
+    \hline
+
+    Analisis &
+    \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \G & \G & \G & \G & \w & \w \\
+    \hline
+
+    Penulisan Laporan &
+    \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \G & \G \\
+    \hline
+  \end{tabular}
+  } % akhir resizebox
+\end{table}

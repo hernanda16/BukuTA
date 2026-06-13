@@ -1,0 +1,89 @@
+% [TEMPLATE] Sajikan hasil pengujian dalam bentuk tabel dan grafik.
+% Demonstrasi: figure, tabel dengan \makecell dan data numerik.
+
+\subsection{Pengujian Sub-sistem A}
+
+Pengujian sub-sistem A dilakukan untuk mengevaluasi kinerjanya pada berbagai kondisi.
+
+\begin{figure}[H] 
+    \centering
+    \includegraphics[scale=0.49]{gambar/dummy_image.jpg}
+    \caption{Hasil pengujian kondisi A}
+    \label{fig:hasil_a}
+\end{figure}
+
+\begin{figure}[H] 
+    \centering
+    \includegraphics[scale=0.49]{gambar/dummy_image.jpg}
+    \caption{Hasil pengujian kondisi B}
+    \label{fig:hasil_b}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Hasil pengujian kondisi A}
+\label{tab:hasil_a}
+\begin{tabular}{ccccccccc}
+\hline
+\makecell{Parameter\\1} &
+\makecell{Parameter\\2} &
+\makecell{Parameter\\3} &
+\makecell{Parameter\\4} &
+\makecell{Parameter\\5} &
+\makecell{Parameter\\6} &
+\makecell{Efisiensi} &
+\makecell{Parameter\\7} \\
+\hline
+1,0 & 0,100 & 0,105 & 12,5 & 1,00 & 1,31 & 0,76 & 0,054 \\
+2,0 & 0,200 & 0,210 & 12,5 & 2,00 & 2,63 & 0,76 & 0,055 \\
+3,0 & 0,300 & 0,315 & 12,5 & 3,00 & 3,94 & 0,76 & 0,056 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Hasil pengujian kondisi B}
+\label{tab:hasil_b}
+\begin{tabular}{ccccccccc}
+\hline
+\makecell{Parameter\\1} &
+\makecell{Parameter\\2} &
+\makecell{Parameter\\3} &
+\makecell{Parameter\\4} &
+\makecell{Parameter\\5} &
+\makecell{Parameter\\6} &
+\makecell{Efisiensi} &
+\makecell{Parameter\\7} \\
+\hline
+1,0 & 0,090 & 0,105 & 12,5 & 0,90 & 1,31 & 0,69 & 0,062 \\
+2,0 & 0,180 & 0,210 & 12,5 & 1,80 & 2,63 & 0,69 & 0,063 \\
+3,0 & 0,270 & 0,315 & 12,5 & 2,70 & 3,94 & 0,69 & 0,064 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Pengujian Sub-sistem B}
+
+Pengujian sub-sistem B dilakukan untuk mengukur parameter tertentu.
+
+\begin{table}[H]
+\centering
+\caption{Hasil pengujian sub-sistem B}
+\label{tab:hasil_c}
+\begin{tabular}{ccccccccc}
+\hline
+\makecell{Parameter\\1} &
+\makecell{Parameter\\2} &
+\makecell{Parameter\\3} &
+\makecell{Parameter\\4} &
+\makecell{Parameter\\5} &
+\makecell{Parameter\\6} &
+\makecell{Efisiensi} &
+\makecell{Parameter\\7} \\
+\hline
+16,8 & 13,4 & 15,2 & 12,5 & 225 & 191 & 0,85 & 0,082 \\
+20,0 & 11,5 & 15,2 & 12,5 & 231 & 191 & 0,83 & 0,096 \\
+\hline
+\end{tabular}
+\end{table}
