@@ -289,3 +289,8 @@ main.pdf
 
 # Backup files
 *.bkp
+
+.opencode/
+opencode*
+
+PEDOMAN-PENULISAN.md

@@ -1,18 +1,288 @@
-@article{contoh2020,
-  author    = {Nama Penulis Pertama and Nama Penulis Kedua},
-  title     = {Judul Artikel Jurnal},
-  journal   = {Nama Jurnal},
-  volume    = {10},
-  number    = {2},
-  pages     = {100--110},
+@article{Ondrus2020AutonomousCarsWork,
+  title     = {How Do Autonomous Cars Work?},
+  author    = {Ondruš, Ján and Kolla, Eduard and Vertal, Peter and Šarić, Željko},
+  journal   = {Transportation Research Procedia},
+  volume    = {44},
+  pages     = {226-233},
   year      = {2020},
-  publisher = {Penerbit}
+  publisher = {Elsevier Ltd},
+  doi       = {10.1016/j.trpro.2020.02.049},
+  note      = {Peer-reviewed under responsibility of the scientific committee of the LOGI 2019 -- Horizons of Autonomous Mobility in Europe},
+  url       = {https://doi.org/10.1016/j.trpro.2020.02.049},
+  issn      = {2352-1465}
 }
 
-@book{contoh2019,
-  author    = {Nama Penulis Buku},
-  title     = {Judul Buku},
-  publisher = {Penerbit},
-  year      = {2019},
-  address   = {Kota}
+@conference{Rahiman2013GPSNavigation,
+  author    = {Rahiman, Wan and Zainal, Zafariq},
+  booktitle = {2013 IEEE 8th Conference on Industrial Electronics and Applications (ICIEA)},
+  title     = {An overview of development GPS navigation for autonomous car},
+  year      = {2013},
+  volume    = {},
+  number    = {},
+  pages     = {1112-1118},
+  keywords  = {Global Positioning System;Satellites;Compass;Servomotors;Receivers},
+  doi       = {10.1109/ICIEA.2013.6566533}
 }
+
+@article{Lee2022ResilientNavigation,
+  title       = {A Resilient Navigation and Path Planning System for High-speed Autonomous Race Cars},
+  author      = {Lee, Daegyu and Jung, Chanyoung and Finazzi, Andrea and Seong, Hyunki and Shim, D. Hyunchul},
+  journal     = {arXiv preprint arXiv:2207.12232},
+  year        = {2022},
+  institution = {Korea Advanced Institute of Science and Technology (KAIST)},
+  address     = {Daejeon, Republic of Korea},
+  abstract    = {This paper presents a resilient navigation and path planning system developed for the Indy Autonomous Challenge. The proposed system uses a multi-sensor fusion Kalman filter and wall-following navigation to handle degraded GPS measurements and ensure safe, high-speed autonomous racing.},
+  keywords    = {Resilient Navigation, Path Planning, Kalman Filter, GPS, LiDAR, Autonomous Race Car, Indy Autonomous Challenge},
+  url         = {https://arxiv.org/abs/2207.12232}
+}
+
+@conference{Dharma2025PerformanceEvaluation,
+  title     = {Performance Evaluation of DeeplabV3 Plus for Road Segmentation in iCar ITS},
+  abstract  = {Road segmentation plays a vital role in enabling navigation of Intelligent Car ITS (iCar ITS), especially in complex and low-light environments. However, many previous studies have focused solely on accuracy metrics while overlooking real-time inference performance on low-end hardware and the lack of road datasets from Southeast Asian regions. Although lightweight models such as MobileNetV2 have been previously explored, evaluations of newer architectures like MobileNetV3-Large remain limited in constrained resource scenarios. This study investigates the performance of DeepLabV3 Plus with three backbone networks ResNet-50, ResNet-101, and MobileNetV3-Large trained using supervised learning on a custom dataset collected via the iCar ITS platform in Indonesian urban settings, particularly at night to simulate challenging conditions. The training was conducted using the Adam optimizer in Google Colab, and inference was evaluated on a laptop (Intel Core i7-8550U, 22.2 GB RAM, NVIDIA GeForce MX130) to assess real world feasibility. Experimental results show that ResNet-50 achieved the highest segmentation accuracy (Pixel Accuracy: 99.64\%, mIoU: 76.45\%, Mean F1: 82.03\%), while MobileNetV3-Large maintained competitive accuracy (PA: 99.59\%, mIoU: 74.96\%, Mean F1: 80.28\%) with significantly better real-time performance (FPS: 29.13, processing time: 0.0187 s), making it more suitable for embedded applications. These findings indicate a trade-off between accuracy and computational efficiency; this is important because, in addition to high accuracy, real-time performance and stable road detection are essential to support the system's response to fast-moving vehicles and dynamic road conditions.},
+  keywords  = {DeepLabV3 Plus, MobileNetV3-Large, ResNet-101, ResNet-50, Road Segmentation, iCar ITS},
+  author    = {Dharma, Krisna Pramudya and Rudy Dikairono and Djoko Purwanto},
+  note      = {Publisher Copyright: {\textcopyright} 2025 IEEE.; 26th International Seminar on Intelligent Technology and Its Applications, ISITIA 2025 ; Conference date: 23-07-2025 Through 25-07-2025},
+  year      = {2025},
+  doi       = {10.1109/ISITIA66279.2025.11137569},
+  language  = {English},
+  pages     = {361--366},
+  booktitle = {26th International Seminar on Intelligent Technology and Its Applications},
+  publisher = {Institute of Electrical and Electronics Engineers Inc.},
+  address   = {United States},
+  edition   = {2025}
+}
+
+@conference{Muhtadin2023DeepReinforcement,
+  title     = {Deep Reinforcement Learning Control Strategy at Roundabout for i-CAR Autonomous Car},
+  abstract  = {Institut Teknologi Sepuluh Nopember (ITS) has successfully implemented an Autonomous Car (i-CAR) as a mode of commuter transportation within the campus. One of the difficulties in implementing the maneuver is when passing roundabouts which are scattered on the i-CAR route. This paper discusses i-CAR's maneuvers on roundabouts by implementing Deep Reinforcement Learning. The i-CAR vehicle is modeled in the CARLA simulation environment, then tested in a virtual environment in roundabouts with intersections and roundabouts without intersections that simulate U-turn maneuvers. The Deep Reinforcement method used is Deep Que Network (DQN) using various reward function configurations. Through experiments using CARLA simulations, it was obtained that Icar was able to pass roundabouts with and without intersections with an average deviation angle of 27.011 degrees and 30.068 degrees, respectively. The average time needed to pass the roundabout is 13.3 seconds and 7.9 seconds, with an average speed of 27.0 kmph and 28.5 kmph. This speed is still acceptable on campus, where the driving speed inside is limited to 40 kmph.},
+  keywords  = {Autonomous Vehicle, Deep Learning, Reinforcement Learning, Simulation},
+  author    = {Muhtadin and Meliaz, Muhammad Roychan and Rudy Dikairono and Purnama, I. Ketut Eddy and Purnomo, Mauridhi Hery},
+  note      = {Publisher Copyright: {\textcopyright} 2023 IEEE.; 24th International Seminar on Intelligent Technology and Its Applications, ISITIA 2023 ; Conference date: 26-07-2023 Through 27-07-2023},
+  year      = {2023},
+  doi       = {10.1109/ISITIA59021.2023.10221077},
+  language  = {English},
+  series    = {2023 International Seminar on Intelligent Technology and Its Applications: Leveraging Intelligent Systems to Achieve Sustainable Development Goals, ISITIA 2023 - Proceeding},
+  publisher = {Institute of Electrical and Electronics Engineers Inc.},
+  pages     = {473--478},
+  booktitle = {2023 International Seminar on Intelligent Technology and Its Applications},
+  address   = {United States}
+}
+
+@conference{Zazuli2024SensorFusion,
+  title     = {Sensor Fusion System for Localization of Autonomous Car},
+  abstract  = {In the realm of advancing self-driving vehicle technology, numerous pivotal elements contribute significantly to its progress, with localization standing out as a critical aspect. A robust localization system holds immense significance, allowing a vehicle to precisely ascertain its position on the global map and navigate the complexities of the road network efficiently. Diverse methodologies, including the Global Navigation Satellite System (GNSS), Wheel Odometry, and Inertia Measurement, can be employed to develop this intricate system. Each method brings its own set of advantages and drawbacks, contributing to the nuanced landscape of self-driving vehicle localization. To enhance the accuracy and quality of data, this paper proposes a methodology that integrates information from various sources, such as GNSS, Wheel Odometry, and Inertia Measurement, using the Extended Kalman Filter. This approach serves as a linchpin for obtaining precise and reliable data, aiming to synergistically leverage the strengths of each method while mitigating their weaknesses. The overarching objective is to fortify the overall reliability of the generated data, emphasizing a holistic and integrated perspective. This methodology represents a significant stride toward refining data quality within self-driving vehicle localization systems, contributing to the realization of more robust and dependable autonomous driving technology.},
+  keywords  = {Extended Kalman Filter, GNSS, IMU, Odometry, Sensor Fusion},
+  author    = {Zazuli, Moh Ismarintan and Rudy Dikairono and Djoko Purwanto and Muhtadin and Hakim, Muhammad Lukman},
+  note      = {Publisher Copyright: {\textcopyright} 2024 IEEE.; 2024 International Conference on Green Energy, Computing and Sustainable Technology, GECOST 2024 ; Conference date: 17-01-2024 Through 19-01-2024},
+  year      = {2024},
+  doi       = {10.1109/GECOST60902.2024.10474699},
+  language  = {English},
+  series    = {2024 International Conference on Green Energy, Computing and Sustainable Technology, GECOST 2024},
+  publisher = {Institute of Electrical and Electronics Engineers Inc.},
+  pages     = {77--81},
+  booktitle = {2024 International Conference on Green Energy, Computing and Sustainable Technology, GECOST 2024},
+  address   = {United States}
+}
+
+@article{Chiodini2021OccupancyGrid,
+  author  = {Sebastiano Chiodini and Marco Pertile and Stefano Debei},
+  title   = {Occupancy grid mapping for rover navigation based on semantic segmentation},
+  journal = {Acta IMEKO},
+  volume  = {10},
+  number  = {4},
+  pages   = {155--161},
+  year    = {2021},
+  month   = dec,
+  doi     = {10.21014/acta_imeko.v10i4.1144},
+  url     = {https://doi.org/10.21014/acta_imeko.v10i4.1144},
+  issn    = {2221-870X},
+  article = {25}
+}
+
+@conference{Mahmud2021RoadImageSegmentation,
+  author    = {Mahmud, Mat Nizam and Osman, Muhammad Khusairi and Ismail, Ahmad Puad and Ahmad, Fadzil and Ahmad, Khairul Azman and Ibrahim, Anas},
+  booktitle = {2021 11th IEEE International Conference on Control System, Computing and Engineering (ICCSCE)},
+  title     = {Road Image Segmentation using Unmanned Aerial Vehicle Images and DeepLab V3+ Semantic Segmentation Model},
+  year      = {2021},
+  volume    = {},
+  number    = {},
+  pages     = {176-181},
+  keywords  = {Deep learning;Measurement;Image segmentation;Roads;Simulation;Semantics;Urban planning;Road Image Segmentation;UAV;DeepLab V3+;Resnet-50},
+  doi       = {10.1109/ICCSCE52189.2021.9530950}
+}
+
+@misc{poudel2019fastscnnfastsemanticsegmentation,
+  title         = {Fast-SCNN: Fast Semantic Segmentation Network},
+  author        = {Rudra P K Poudel and Stephan Liwicki and Roberto Cipolla},
+  year          = {2019},
+  eprint        = {1902.04502},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV},
+  url           = {https://arxiv.org/abs/1902.04502}
+}
+
+@incollection{Raza2008GPS,
+  author    = {A. Raza and S. Hameed and T. Macintyre},
+  title     = {Global Positioning System -- Working and its Applications},
+  booktitle = {Innovations and Advanced Techniques in Systems, Computing Sciences and Software Engineering},
+  editor    = {Khaled Elleithy},
+  publisher = {Springer},
+  address   = {Dordrecht},
+  year      = {2008},
+  pages     = {448-453},
+  doi       = {10.1007/978-1-4020-8735-6_84},
+  url       = {https://doi.org/10.1007/978-1-4020-8735-6_84},
+  isbn      = {978-1-4020-8734-9},
+  note      = {Online ISBN: 978-1-4020-8735-6}
+}
+
+@article{Ali2020Roundabout,
+  author    = {Ali, Mohammed A. H. and Mailah, Musa and Jabbar, Waheb A. and Moiduddin, Khaja and Ameen, Wadea and Alkhalefah, Hisham},
+  title     = {Autonomous Road Roundabout Detection and Navigation System for Smart Vehicles and Cities Using Laser Simulator--Fuzzy Logic Algorithms and Sensor Fusion},
+  journal   = {Sensors},
+  volume    = {20},
+  number    = {13},
+  pages     = {3694},
+  year      = {2020},
+  doi       = {10.3390/s20133694},
+  url       = {https://doi.org/10.3390/s20133694},
+  publisher = {MDPI}
+}
+
+@article{Li2024GaussianPSM,
+  author    = {Li, Zhenfeng and Wu, Xuncheng and Zhang, Weiwei and Yu, Wangpengfei},
+  title     = {Obstacle Avoidance Trajectory Planning for Autonomous Vehicles on Urban Roads Based on Gaussian Pseudo-Spectral Method},
+  journal   = {World Electric Vehicle Journal},
+  volume    = {15},
+  number    = {1},
+  pages     = {7},
+  year      = {2024},
+  doi       = {10.3390/wevj15010007},
+  url       = {https://doi.org/10.3390/wevj15010007},
+  publisher = {MDPI}
+}
+
+@article{Ahn2021PurePursuit,
+  author    = {Ahn, Jae-Hoon and Shin, Seung-Ho and Kim, Min-Seok and Kum, Dong-Won},
+  title     = {Accurate Path Tracking by Adjusting Look-Ahead Point in Pure Pursuit Method},
+  journal   = {International Journal of Automotive Technology},
+  volume    = {22},
+  number    = {1},
+  pages     = {119--129},
+  year      = {2021},
+  doi       = {10.1007/s12239-021-0013-7},
+  url       = {https://doi.org/10.1007/s12239-021-0013-7},
+  publisher = {Springer},
+  month     = feb
+}
+
+@misc{ma2024monocular3dlanedetection,
+  title         = {Monocular 3D lane detection for Autonomous Driving: Recent Achievements, Challenges, and Outlooks},
+  author        = {Fulong Ma and Weiqing Qi and Guoyang Zhao and Linwei Zheng and Sheng Wang and Yuxuan Liu and Ming Liu and Jun Ma},
+  year          = {2024},
+  eprint        = {2404.06860},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2404.06860}
+}
+
+@article{Yepez2020StrideWinograd,
+  author    = {Yepez, Juan and Ko, Seok-Bum},
+  journal   = { IEEE Transactions on Very Large Scale Integration (VLSI) Systems },
+  title     = {{ Stride 2 1-D, 2-D, and 3-D Winograd for Convolutional Neural Networks }},
+  year      = {2020},
+  volume    = {28},
+  number    = {04},
+  issn      = {1557-9999},
+  pages     = {853-863},
+  abstract  = { Convolutional neural networks (CNNs) have been widely adopted for computer vision applications. CNNs require many multiplications, making their use expensive in terms of both computational complexity and hardware. An effective method to mitigate the number of required multiplications is via the Winograd algorithm. Previous implementations of CNNs based on Winograd use the 2-D algorithm F(2 × 2,3 × 3), which reduces computational complexity by a factor of 2.25 over regular convolution. However, current Winograd implementations only apply when using a stride (shift displacement of a kernel over an input) of 1. In this article, we presented a novel method to apply the Winograd algorithm to a stride of 2. This method is valid for one, two, or three dimensions. We also introduced new Winograd versions compatible with a kernel of size 3, 5, and 7. The algorithms were successfully implemented on an NVIDIA K20c GPU. Compared to regular convolutions, the implementations for stride 2 are 1.44 times faster for a 3 × 3 kernel, 2.04× faster for a 5 × 5 kernel, 2.42× faster for a 7 × 7 kernel, and 1.73× faster for a 3 × 3 × 3 kernel. Additionally, a CNN accelerator using a novel processing element (PE) performs two 2-D Winograd stride 1, or one 2-D Winograd stride 2, and operations per clock cycle was implemented on an Intel Arria-10 field-programmable gate array (FPGA). We accelerated the original and our proposed modified VGG-16 architectures and achieved digital signal processor (DSP) efficiencies of 1.22 giga operations per second (GOPS)/DSPs and 1.33 GOPS/DSPs, respectively. },
+  keywords  = {Kernel;Computer architecture;Field programmable gate arrays;Convolution;Graphics processing units;Convolutional neural networks;Acceleration},
+  doi       = {10.1109/TVLSI.2019.2961602},
+  url       = {https://doi.ieeecomputersociety.org/10.1109/TVLSI.2019.2961602},
+  publisher = {IEEE Computer Society},
+  address   = {Los Alamitos, CA, USA},
+  month     = apr
+}
+
+@article{Dang2020DWSCNN,
+  author    = {Dang, Lanxue and Pang, Peidong and Lee, Jay},
+  title     = {Depth-Wise Separable Convolution Neural Network with Residual Connection for Hyperspectral Image Classification},
+  journal   = {Remote Sensing},
+  volume    = {12},
+  number    = {20},
+  pages     = {3408},
+  year      = {2020},
+  doi       = {10.3390/rs12203408},
+  url       = {/mnt/data/SemanticSegmentation_SnowyEnvironment_FCN.pdf},
+  publisher = {MDPI}
+}
+
+@article{Sviatov2023TrajectoryGeneration,
+  author  = {Sviatov, Kirill and Rubtsov, Ivan and Filippov, Aleksey and Romanov, Anton},
+  title   = {Approach of Trajectory Generation Based on Waypoint Information for a Highly Automated Vehicle},
+  journal = {Preprints},
+  year    = {2023},
+  doi     = {10.20944/preprints202311.1885.v1},
+  url     = {https://doi.org/10.20944/preprints202311.1885.v1},
+  note    = {Preprint, not peer-reviewed}
+}
+
+@article{Aldibaja2024WaypointTransfer,
+  author    = {Aldibaja, Mohammad and Yanase, Ryo and Suganuma, Naoki},
+  title     = {Waypoint Transfer Module between Autonomous Driving Maps Based on LiDAR Directional Sub-Images},
+  journal   = {Sensors},
+  volume    = {24},
+  number    = {3},
+  pages     = {875},
+  year      = {2024},
+  doi       = {10.3390/s24030875},
+  url       = {https://doi.org/10.3390/s24030875},
+  publisher = {MDPI}
+}
+
+@article{Purwanto2022PenyimpanganGPS,
+  author  = {Purwanto, Budi},
+  year    = {2022},
+  month   = {11},
+  pages   = {99-107},
+  title   = {Penyimpangan Penentuan Posisi Perangkat Global Positioning System (GPS)},
+  volume  = {16},
+  journal = {Ecolab},
+  doi     = {10.20886/jklh.2022.16.2.99-107}
+}
+
+@misc{wang2023internimage,
+  author    = {Wenhai Wang and Jifeng Dai and Zhe Chen and 
+               Zhenhang Huang and Zhiqi Li and Xizhou Zhu and 
+               Xiaowei Hu and Tong Lu and Lewei Lu and 
+               Hongsheng Li and Xiaogang Wang and Yu Qiao},
+  title     = {InternImage: Exploring Large-Scale Vision Foundation 
+               Models with Deformable Convolutions},
+  year      = {2023},
+  eprint    = {2211.05778},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV}
+}
+
+@article{Peng2023BEVSegFormer,
+  author    = {Peng, Lang and Chen, Zhirong and Fu, Zhangjie and Liang, Pengpeng and Cheng, Erkang},
+  booktitle = {2023 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  title     = {BEVSegFormer: Bird's Eye View Semantic Segmentation From Arbitrary Camera Rigs},
+  year      = {2023},
+  volume    = {},
+  number    = {},
+  pages     = {5924-5932},
+  keywords  = {Computer vision;Semantic segmentation;Semantics;Layout;Transformers;Cameras;Decoding;Applications: Robotics;Image recognition and understanding (object detection;categorization;segmentation;scene modeling;visual reasoning)},
+  doi       = {10.1109/WACV56688.2023.00588}
+}
+
+@conference{zhou2022exploring,
+  author    = {Zhou, Yuxiao and Yang, Kecheng},
+  title     = {Exploring TensorRT to Improve Real-Time Inference for Deep Learning},
+  booktitle = {2022 IEEE 24th Int Conf on High Performance Computing and Communications (HPCC/DSS/SmartCity/DependSys)},
+  year      = {2022},
+  pages     = {2011--2018},
+  doi       = {10.1109/HPCC-DSS-SMARTCITY-DEPENDSYS57074.2022.00299}
+}
+
+

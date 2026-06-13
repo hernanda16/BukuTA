@@ -4,53 +4,69 @@
 \section{Latar Belakang}
 \label{sec:latarbelakang}
 
-% [TEMPLATE] Uraikan latar belakang masalah yang mendasari penelitian Anda.
-% Jelaskan konteks permasalahan, mengapa penelitian ini penting dilakukan,
-% dan apa gap/kesenjangan dari penelitian sebelumnya.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Navigasi merupakan proses menentukan posisi, arah gerak, dan jalur yang sesuai dengan tujuan yang ingin dicapai.
+Navigasi juga dipakai dalam sistem mobil otonom yang membuatnya mampu bergerak dari suatu titik ke titik yang lain secara mandiri tanpa bantuan manusia \parencite{Ondrus2020AutonomousCarsWork}.
+\emph{Global Positioning System} (GPS) menjadi teknologi navigasi yang umum digunakan karena kemampuannya memberikan informasi posisi global secara \emph{real-time}.
+Pengukuran posisi GPS bersifat independen terhadap pengukuran sebelumnya, sehingga eror posisi tidak terakumulasi seiring bertambahnya waktu tempuh.
+Namun, akurasi GPS sangat bergantung pada kondisi lingkungan sekitar dan jumlah satelit yang dapat dijangkau oleh \emph{receiver} \parencite{Rahiman2013GPSNavigation}.
+Ketergantungan ini memiliki dampak serius ketika sinyal mengalami penurunan akurasi posisi atau degradasi.
+Pada kompetisi \emph{Indy Autonomous Challenge} (IAC) di Amerika Serikat, penurunan akurasi GPS dilaporkan sebagai salah satu penyebab kecelakaan kendaraan otonom \parencite{Lee2022ResilientNavigation}.
+Permasalahan ini juga dialami oleh mobil riset otonom Institut Teknologi Sepuluh Nopember (ITS) ketika beroperasi di lingkungan kampus yang memiliki banyak gedung tinggi dan pepohonan yang menghalangi sinyal GPS sehingga sistem memerlukan fusi sensor untuk mempertahankan estimasi posisi yang akurat \parencite{Zazuli2024SensorFusion}.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-\par\vspace{1.2cm}
+Segmentasi visual merupakan pendekatan yang dapat melengkapi keterbatasan GPS karena memiliki kemampuan mengenali area jalan secara langsung dari citra kamera tanpa bergantung pada sinyal eksternal.
+Penelitian oleh \textcite{Dharma2025PerformanceEvaluation} menunjukkan bahwa \emph{DeepLabV3 Plus} dengan \emph{backbone} ResNet-50 mampu melakukan segmentasi jalan di lingkungan kampus ITS, mencapai \emph{mean Intersection over Union} (mIoU) 76,45\% pada dataset lokal yang diambil dari kamera mobil riset otonom ITS.
+Akan tetapi, penelitian tersebut hanya menggunakan dataset lokal dengan satu jenis kondisi di malam hari saja, sehingga tidak dapat digunakan sebagai acuan untuk kondisi siang hari yang memiliki pencahayaan berbeda.
+Segmentasi dengan arsitektur model lainnya yang diusulkan \textcite{wang2023internimage} menggunakan \emph{InternImage} sebagai \emph{backbone} segmentasi berbasis \emph{deformable convolution} yang dipralatih pada dataset Mapillary Vistas dan dilakukan proses \emph{fine-tuning} pada Cityscapes, mencapai mIoU 87,0\% pada dataset validasi Cityscapes.
+Bobot pralatih tersebut dapat diadaptasi ke dataset lokal melalui \emph{fine-tuning} sehingga tidak perlu melatih model dari awal.
+Namun, ukuran model yang besar memerlukan optimasi agar dapat berjalan secara \emph{real-time} pada komputer kendaraan.
+\textcite{zhou2022exploring} menunjukkan bahwa \emph{TensorRT} mampu mempercepat \emph{inference} model \emph{deep learning} hingga 1,6-2 kali lipat melalui teknik \emph{layer fusion} dan optimalisasi memori, serta hingga 3,7 kali lipat dengan kuantisasi INT8, tanpa penurunan akurasi yang signifikan.
+
+Di sisi lain, penelitian oleh \textcite{Zazuli2024SensorFusion} mengimplementasikan \emph{Extended Kalman Filter} (EKF) untuk memfusikan data GNSS, odometri roda, dan \emph{Inertial Measurement Unit} (IMU) pada mobil riset otonom ITS.
+Hasil fusi mencapai \emph{mean error} 0,43 m, lebih baik dibandingkan odometri saja yang memiliki \emph{mean error} 1,52 m.
+Meskipun demikian, penelitian tersebut hanya mencakup estimasi posisi (lokalisasi) dan belum membahas bagaimana data posisi digunakan untuk pengambilan keputusan navigasi seperti penentuan arah belok di persimpangan.
+Sistem navigasi eksisting pada mobil riset otonom ITS masih mengandalkan GPS sebagai acuan utama pengendali arah, sehingga kendaraan tidak memiliki kemampuan untuk mengoreksi posisi berdasarkan kondisi jalan pada saat itu.
+
+Penelitian ini bertujuan mengintegrasikan hasil segmentasi visual dengan rute titik acuan GPS melalui proses \emph{path fusion} untuk menghasilkan manuver belok yang adaptif di persimpangan jalan kampus ITS.
+Pendekatan integrasi yang diusulkan merupakan hal baru pada platform riset otonom ITS.
+Penelitian ini diharapkan dapat meningkatkan keandalan navigasi di lingkungan kampus yang kompleks, serta menjadi referensi bagi pengembangan sistem navigasi mobil otonom di Indonesia.
 
 \section{Rumusan Masalah}
-\label{sec:Rumusan Masalah}
+\label{sec:rumusanmasalah}
 
-% [TEMPLATE] Tuliskan rumusan masalah dalam bentuk pertanyaan penelitian.
-Berdasarkan latar belakang yang telah diuraikan, rumusan masalah dalam penelitian ini adalah sebagai berikut: 
+Berdasarkan latar belakang yang telah diuraikan, rumusan masalah dalam penelitian ini adalah sebagai berikut:
 \begin{enumerate}
-  \item Rumusan masalah pertama yang akan dijawab dalam penelitian ini?
-  \item Rumusan masalah kedua yang akan dijawab dalam penelitian ini?
-  \item Rumusan masalah ketiga (jika ada)?
+  \item Bagaimana mengintegrasikan hasil segmentasi visual dengan rute titik acuan untuk menghasilkan manuver belok yang adaptif?
+  \item Bagaimana sistem dapat tetap bernavigasi saat sinyal GPS mengalami gangguan?
 \end{enumerate}
 
 \section{Batasan Masalah}
 \label{sec:batasanmasalah}
 
-% [TEMPLATE] Tuliskan batasan-batasan penelitian agar ruang lingkup jelas.
-Batasan masalah dalam penelitian ini adalah sebagai berikut: 
+Batasan masalah dalam penelitian ini adalah sebagai berikut:
 \begin{enumerate}
-  \item Batasan pertama dari penelitian ini.
-  \item Batasan kedua dari penelitian ini.
-  \item Batasan ketiga dari penelitian ini.
-  \item Batasan keempat dari penelitian ini.
+  \item Penelitian difokuskan pada navigasi mobil otonom di lingkungan kampus Institut Teknologi Sepuluh Nopember (ITS) Surabaya.
+  \item Sensor yang digunakan terbatas pada kamera, GPS, IMU (\emph{Inertial Measurement Unit}), dan odometri roda.
+  \item Pengambilan data dan pengujian dilakukan pada kendaraan Omoda E5 dalam kondisi cuaca cerah dan kecepatan rendah.
+  \item Penelitian ini tidak secara khusus membahas deteksi objek lain, penghindaran rintangan (\emph{obstacle avoidance}), atau perencanaan rute global otomatis.
+  \item Sistem navigasi diuji pada kecepatan maksimal 8 km/jam di jalan datar di lingkungan kampus ITS.
+  \item Penelitian ini hanya mencakup subsistem persepsi visual hingga fusi jalur, tidak termasuk subsistem kendali dan aktuasi kendaraan.
 \end{enumerate}
 
 \section{Tujuan}
-\label{sec:Tujuan}
+\label{sec:tujuan}
 
-% [TEMPLATE] Tuliskan tujuan penelitian yang ingin dicapai.
-Penelitian ini bertujuan untuk:
+Tujuan dari pengerjaan tugas akhir ini adalah:
 \begin{enumerate}
-	\item Tujuan pertama yang hendak dicapai dalam penelitian ini.
-	\item Tujuan kedua yang hendak dicapai dalam penelitian ini.
+  \item Mengintegrasikan hasil segmentasi visual dengan rute titik acuan untuk menghasilkan manuver belok yang adaptif dan menjaga kendaraan tetap berada pada jalur yang dapat dilalui.
+  \item Mengurangi ketergantungan navigasi terhadap GPS melalui integrasi persepsi visual.
 \end{enumerate}
 
 \section{Manfaat}
-\label{sec:Manfaat}
+\label{sec:manfaat}
 
-% [TEMPLATE] Tuliskan manfaat dari penelitian ini.
-Manfaat dari penelitian ini adalah:
+Manfaat yang diharapkan dari penelitian ini adalah:
 \begin{enumerate}
-    \item Manfaat pertama dari penelitian ini.
-    \item Manfaat kedua dari penelitian ini.
+    \item Membuat sistem navigasi yang lebih andal dan dinamis untuk mobil otonom di lingkungan kampus melalui integrasi data visual dan GPS.
+    \item Memberikan kontribusi pada pengembangan teknologi mobil otonom, khususnya pada tingkat navigasi berbasis persepsi visual.
+    \item Menjadi referensi bagi penelitian selanjutnya yang mengembangkan navigasi mobil otonom di lingkungan yang kompleks.
 \end{enumerate}
