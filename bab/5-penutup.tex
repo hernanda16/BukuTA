@@ -4,22 +4,45 @@
 \section{Kesimpulan}
 \label{sec:kesimpulan}
 
-% [TEMPLATE] Tuliskan kesimpulan dari hasil penelitian Anda.
-% Jawab setiap tujuan/rumusan masalah yang telah ditetapkan di Bab 1.
 Berdasarkan hasil perancangan, implementasi, dan pengujian yang telah dilakukan, dapat diambil beberapa kesimpulan sebagai berikut:
+
 \begin{enumerate}
-    \item Kesimpulan pertama dari hasil penelitian.
-    \item Kesimpulan kedua dari hasil penelitian.
-    \item Kesimpulan ketiga dari hasil penelitian.
-    \item Kesimpulan keempat dari hasil penelitian.
+    \item Sistem navigasi yang mengintegrasikan segmentasi visual dengan data GPS berhasil dirancang dan diimplementasikan pada kendaraan otonom Omoda E5.
+    Model InternImage dengan akselerasi TensorRT mampu melakukan segmentasi jalan secara \emph{real-time} dengan mIoU 0,9574 pada laju 18 FPS.
+    Hasil konversi mask ke \emph{point cloud} terverifikasi sesuai dengan data LiDAR, menyediakan representasi spasial yang akurat bagi modul perencanaan lokal.
+
+    \item Fusi sensor menggunakan Kalman Filter mampu menghasilkan estimasi posisi yang akurat.
+    Pengujian terhadap data aktual posisi (pita ukur) menunjukkan RMSE Kalman Filter sebesar 0,173 m dan RMSE kecepatan 0,138 m/s.
+    Pada 6 rute dengan panjang berbeda, KF secara konsisten memiliki RMSE lebih rendah daripada GPS.
+    Pada area Rektorat dengan degradasi GPS, KF mempertahankan RMSE 1,07--1,56 m sementara GPS mengalami \emph{drift} hingga 9,43 m.
+    Karakterisasi akurasi sudut hadap menunjukkan bahwa dengan penyaringan kecepatan dan akurasi, RMSE orientasi yaw IMU dapat ditekan hingga 0,67\textdegree\ terhadap GPS.
+
+    \item Integrasi segmentasi visual dengan rute titik acuan GPS terbukti menghasilkan manuver belok adaptif sehingga menjawab rumusan masalah pertama.
+    Mode \emph{fusion} mencapai keberhasilan penyelesaian rute 100\% pada kedua rute uji dengan akurasi destinasi di bawah 1 meter.
+    Perencanaan lokal berhasil menghasilkan lintasan yang aman pada seluruh tipe geometri jalan, termasuk segmen lurus dengan persimpangan, belokan dengan radius kecil, dan bundaran dengan putaran 180\textdegree.
+    Sebaliknya, mode \emph{vision} dan GPS yang beroperasi secara terpisah gagal menyelesaikan seluruh percobaan, menegaskan bahwa integrasi merupakan syarat perlu untuk navigasi andal.
+
+    \item Sistem terbukti mampu mempertahankan navigasi saat sinyal GPS mengalami gangguan, menjawab rumusan masalah kedua.
+    Pada skenario injeksi \emph{noise} Gaussian ($\sigma = 0,2$ m), RMSE posisi meningkat 74,6\% menjadi 0,705 m namun sistem tetap bernavigasi tanpa kehilangan jalur.
+    Pada kondisi degradasi GPS alami di area Rektorat, KF tidak mengalami masalah signifikan meskipun GPS mengalami \emph{drift}.
+    Hasil ini menunjukkan bahwa mekanisme fusi sensor pada Kalman Filter efektif meredam dampak gangguan dan mempertahankan estimasi posisi dalam batas yang dapat diterima.
 \end{enumerate}
 
 \section{Saran}
-\label{chap:saran}
+\label{sec:saran}
 
-% [TEMPLATE] Tuliskan saran untuk pengembangan penelitian selanjutnya.
 Dari hasil penelitian yang telah dilakukan, terdapat beberapa saran untuk pengembangan lebih lanjut:
+
 \begin{enumerate}
-    \item Saran pertama untuk pengembangan selanjutnya.
-    \item Saran kedua untuk pengembangan selanjutnya.
+    \item Pengujian pada kecepatan yang lebih tinggi atau bervariasi perlu dilakukan untuk memvalidasi performa sistem di luar batas kecepatan rendah ($\pm$8 km/jam) yang digunakan pada penelitian ini.
+
+    \item Pengujian pada lingkungan urban dengan kehilangan sinyal GPS parsial perlu dilakukan untuk mengukur batas ketahanan sistem.
+    Meskipun pengujian di area Rektorat telah menunjukkan ketahanan terhadap degradasi GPS, skenario kehilangan sinyal GPS sepenuhnya dalam durasi panjang belum diuji.
+
+    \item Mengintegrasikan koreksi \emph{yaw} ke dalam vektor \emph{state} Kalman Filter sehingga estimasi dan koreksi sudut hadap menjadi bagian dari siklus fusi sensor yang terpadu, tidak lagi sebagai koreksi eksternal yang terpisah.
+    Hasil karakterisasi akurasi sudut hadap yang mencapai 0,67\textdegree\ terhadap GPS mendukung kelayakan pendekatan ini.
+
+    \item Menambahkan modul deteksi objek dan penghindaran rintangan (\emph{obstacle avoidance}) untuk melengkapi sistem navigasi yang saat ini hanya berfokus pada pengenalan area jalan dan perencanaan lintasan.
+
+    \item Menggunakan modul GPS dengan koreksi RTK sebagai sumber data posisi untuk meningkatkan akurasi pengukuran yang menjadi masukan Kalman Filter, sehingga RMSE estimasi dapat lebih ditekan, terutama pada area dengan gangguan sinyal.
 \end{enumerate}

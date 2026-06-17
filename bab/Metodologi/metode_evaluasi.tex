@@ -1,0 +1,47 @@
+Evaluasi performa sistem dilakukan melalui serangkaian metrik kuantitatif yang disesuaikan dengan masing-masing subsistem yang diuji. Metrik yang digunakan dijelaskan sebagai berikut.
+
+\subsection{\emph{Root Mean Square Error} (RMSE)}
+
+\emph{Root Mean Square Error} (RMSE) digunakan sebagai metrik utama untuk mengukur akurasi estimasi posisi, kecepatan, dan sudut hadap terhadap data pembanding. RMSE dihitung dengan persamaan berikut:
+
+\begin{equation}
+\text{RMSE} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}
+\label{eq:rmse}
+\end{equation}
+
+dengan $y_i$ adalah nilai estimasi, $\hat{y}_i$ adalah nilai pembanding (data aktual, DLIO, atau GPS), dan $n$ adalah jumlah sampel.
+
+Untuk pengujian posisi dan kecepatan terhadap data aktual, RMSE dihitung antara estimasi Kalman Filter terhadap data pengukuran fisik menggunakan meteran dan \emph{stopwatch} pada 6 iterasi lintasan pendek (20--30~m).
+Untuk pengujian posisi pada rute panjang, RMSE dihitung antara estimasi KF terhadap DLIO sebagai \emph{base line}.
+Untuk pengujian sudut hadap, RMSE dihitung antara orientasi \emph{yaw} IMU terhadap sudut hadap GPS dengan variasi batasan kecepatan dan akurasi sudut hadap GPS.
+
+\subsection{Keberhasilan Penyelesaian Rute}
+
+Keberhasilan penyelesaian rute didefinisikan sebagai persentase percobaan di mana kendaraan berhasil mencapai titik tujuan tanpa intervensi manual.
+Metrik ini digunakan untuk mengevaluasi keandalan sistem navigasi secara keseluruhan pada masing-masing mode operasi (\emph{fusion}, \emph{vision}, dan GPS).
+
+\begin{equation}
+\text{Keberhasilan Penyelesaian Rute} = \frac{\text{Jumlah percobaan berhasil}}{\text{Jumlah total percobaan}} \times 100\%
+\label{eq:completion_rate}
+\end{equation}
+
+\subsection{\emph{Mean Intersection over Union} (mIoU)}
+
+Akurasi segmentasi visual dievaluasi menggunakan metrik \emph{mean Intersection over Union} (mIoU) yang mengukur tumpang-tindih antara area yang diprediksi oleh model dan area pada label \emph{ground truth}:
+
+\begin{equation}
+\text{IoU} = \frac{\text{Area Prediksi} \cap \text{Area Label}}{\text{Area Prediksi} \cup \text{Area Label}}
+\label{eq:iou}
+\end{equation}
+
+\begin{equation}
+\text{mIoU} = \frac{1}{C}\sum_{c=1}^{C} \text{IoU}_c
+\label{eq:miou}
+\end{equation}
+
+dengan $C$ adalah jumlah kelas. Selain mIoU, digunakan juga metrik \emph{Dice Coefficient} untuk kelas jalan dan \emph{Pixel Accuracy} sebagai pelengkap evaluasi.
+
+\subsection{Laju Inferensi}
+
+Laju inferensi model segmentasi diukur dalam \emph{frame per second} (FPS) yang menunjukkan jumlah citra yang dapat diproses dalam satu detik.
+Pengukuran dilakukan pada model PyTorch (.pth) dan TensorRT C++ (.engine) untuk mengevaluasi efektivitas optimasi yang diterapkan.

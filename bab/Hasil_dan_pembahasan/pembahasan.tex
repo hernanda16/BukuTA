@@ -1,0 +1,84 @@
+\subsection{Pembahasan Persepsi Visual}
+\label{sec:bahas_persepsi}
+
+Hasil pengujian menunjukkan bahwa model InternImage dengan \emph{backbone} DCNv3 mampu melakukan segmentasi area jalan di lingkungan kampus ITS dengan akurasi tinggi (mIoU 0,9574).
+Nilai ini melampaui hasil penelitian sebelumnya di lingkungan yang sama yang menggunakan DeepLabV3+ dengan mIoU 0,7645~\parencite{Dharma2025PerformanceEvaluation}.
+Keunggulan ini sesuai dengan teori bahwa \emph{deformable convolution} pada InternImage memberikan fleksibilitas lebih besar dalam menangani variasi bentuk dan skala objek dibandingkan konvolusi standar~\parencite{wang2023internimage}.
+
+Dari sisi performa \emph{real-time}, akselerasi TensorRT mencapai peningkatan 9x dibandingkan PyTorch (18 vs 2 FPS).
+Hasil ini konsisten dengan temuan \textcite{zhou2022exploring} yang menunjukkan bahwa teknik \emph{layer fusion} dan optimalisasi memori pada TensorRT mampu mempercepat inferensi hingga 3,7 kali lipat.
+Laju 18 FPS sudah memadai untuk navigasi pada kecepatan rendah ($\pm$8 km/jam) di lingkungan kampus.
+
+Verifikasi hasil konversi masker biner ke \emph{point cloud} terhadap data LiDAR menunjukkan bahwa proyeksi BEV dari kalibrasi kamera telah menghasilkan representasi jarak yang sesuai dengan data LiDAR.
+Hal ini penting karena \emph{point cloud} hasil konversi menjadi masukan utama bagi modul perencanaan lokal dalam menentukan koridor jalan yang aman.
+
+\subsection{Pembahasan Lokalisasi}
+\label{sec:bahas_lokalisasi}
+
+Pengujian terhadap data aktual posisi menunjukkan bahwa DLIO memiliki RMSE terendah (0,134 m) di antara keempat metode yang diuji, menjelaskan pemilihan DLIO sebagai \emph{base line} untuk evaluasi yang lebih kompleks.
+Kalman Filter mencapai RMSE 0,173 m terhadap data aktual berbeda 0,039 m di atas DLIO.
+Nilai ini konsisten dengan penelitian sebelumnya oleh \textcite{Zazuli2024SensorFusion} yang mencapai \emph{mean error} 0,43 m menggunakan EKF pada mobil riset otonom Institut Teknologi Sepuluh Nopember (iCar). 
+
+Pada estimasi kecepatan, terjadi perbedaan karakteristik yaitu data DLIO justru memiliki RMSE tertinggi (0,166 m/s) sementara KF, GPS, dan odometri menunjukkan performa setara (0,133--0,138 m/s).
+Hal ini menunjukkan bahwa DLIO unggul dalam akurasi posisi namun memiliki estimasi kecepatan sesaat yang kurang halus, fenomena yang umum pada odometri berbasis LiDAR-IMU di mana estimasi kecepatan diperoleh dari diferensiasi posisi yang rentan terhadap derau.
+
+Pengujian pada 6 rute dengan panjang berbeda menunjukkan bahwa KF secara konsisten memiliki RMSE lebih rendah daripada GPS pada seluruh rute.
+Pada rute terpanjang robotika-k1mart (3431,6 m), RMSE KF 0,88 m berhasil menekan akumulasi eror yang mencapai 8,59 m pada odometri murni.
+Hasil ini membuktikan efektivitas fusi sensor dalam membatasi pertumbuhan eror seiring bertambahnya jarak tempuh dan slip yang disebabkan oleh kondisi jalan yang tidak ideal.
+
+Analisis pada area Rektorat juga memberikan bukti ketahanan KF terhadap degradasi GPS.
+Pada 9 iterasi dengan variasi waktu henti, GPS mengalami \emph{drift} signifikan dengan RMSE mencapai 9,43 m dengan waktu henti 20,8 detik, sementara KF mempertahankan RMSE dalam rentang 1,07--1,56 m.
+Pola ini mengonfirmasi bahwa mekanisme fusi sensor pada KF mampu meredam dampak \emph{multipath} dan \emph{drift} GPS yang umum terjadi di area dengan gedung tinggi, sebagaimana dilaporkan oleh \textcite{Lee2022ResilientNavigation}.
+
+Karakterisasi akurasi sudut hadap menunjukkan bahwa 58,2\% sampel GPS memiliki akurasi di bawah 2\textdegree.
+Dengan menerapkan batasan filter kecepatan dan akurasi sudut hadap, RMSE orientasi yaw IMU terhadap GPS dapat ditekan dari 13,27\textdegree\ menjadi 0,67\textdegree.
+Hal ini menunjukkan bahwa IMU mampu memberikan estimasi orientasi yang akurat saat data GPS yang berkualitas tersedia, dan sebaliknya, GPS menyediakan koreksi orientasi yang diperlukan untuk mengompensasi \emph{drift} IMU dalam jangka panjang.
+
+\subsection{Pembahasan Perencanaan Lokal}
+\label{sec:bahas_planner}
+
+Hasil pengujian pada tiga tipe geometri jalan menunjukkan bahwa modul perencanaan lokal mampu menghasilkan lintasan yang aman pada seluruh kondisi yang diuji.
+Pada segmen lurus tanpa persimpangan, perencanaan lokal berada tepat di tengah koridor jalan tanpa osilasi, menunjukkan bahwa algoritma bekerja optimal pada geometri sederhana.
+Selain itu, pada segmen lurus dengan persimpangan \emph{H-junction}, perencanaan lokal tetap berada dalam koridor jalan yang aman meskipun terjadi pelebaran di area persimpangan.
+Fenomena ini diakibatkan oleh mekanisme algoritma yang memaksa kendaraan untuk tetap berada di tengah ruas jalan, sehingga saat terjadi pelebaran, perencanaan lokal bergeser namun tetap menjaga kendaraan dalam jalur yang aman.
+
+Pada manuver belok, radius kelengkungan memengaruhi stabilitas perencanaan lokal.
+Belokan dengan radius kecil menghasilkan osilasi lebih besar dibandingkan belokan dengan radius besar.
+Hal ini sesuai dengan prinsip bahwa \emph{curvature-based dynamic lookahead} mengurangi jarak pandang pada tikungan tajam sehingga memberikan lebih sedikit sampel untuk koreksi posisi.
+Dari hasil yang didapat, osilasi pada belokan dengan radius kecil masih berada dalam batas yang aman sehingga kendaraan masih bisa kembali mengikuti koridor jalan dengan baik.
+
+Pada segmen bundaran, sistem berhasil menangani geometri paling kompleks dengan dua variasi putaran (90\textdegree\ dan 180\textdegree).
+Kemampuan perencanaan lokal untuk memilih rute yang sesuai dengan tujuan akhir kendaraan menunjukkan bahwa algoritma berfungsi dengan baik.
+Meskipun osilasi cukup banyak terjadi di area bundaran, perencanaan lokal tetap berada dalam koridor jalan yang aman.
+
+\subsection{Pembahasan Integrasi Sistem}
+\label{sec:bahas_integrasi}
+
+Perbandingan ketiga metode operasi menunjukkan bahwa integrasi segmentasi visual dengan data GPS (mode \emph{fusion}) merupakan syarat perlu untuk navigasi andal di lingkungan kampus ITS.
+Keberhasilan penyelesaian rute metode \emph{fusion} 100\% pada kedua skenario dengan akurasi destinasi di bawah 1 meter, sementara mode \emph{vision} dan GPS gagal menyelesaikan seluruh percobaan.
+
+Kegagalan mode \emph{vision} disebabkan oleh ketiadaan referensi arah global.
+Tanpa titik acuan GPS, algoritma gagal mengetahui kapan mengikuti tengah koridor jalan atau tetap lurus sehingga tidak mampu membedakan jalur utama dari \emph{side road} di persimpangan.
+Kegagalan mode GPS disebabkan oleh data titik acuan yang tidak benar-benar akurat karena hanya digunakan untuk menyediakan referensi rute global, sehingga eror sudut hadap dan lateral yang dialami kendaraan tidak dapat dikoreksi dengan baik, terutama pada segmen belok dan bundaran yang memerlukan perubahan arah signifikan.
+
+Ketahanan sistem terhadap gangguan GPS diuji lebih lanjut melalui injeksi \emph{noise} Gaussian ($\sigma = 0,2$ m) pada data posisi GPS untuk meniru kondisi degradasi sinyal yang mungkin terjadi di lingkungan kampus.
+RMSE posisi meningkat 74,6\% dari 0,404 m menjadi 0,705 m, namun sistem tetap mampu bernavigasi sepanjang rute tanpa salah dalam memilih jalur.
+Hasil ini menunjukkan bahwa fusi sensor pada Kalman Filter mampu meredam dampak gangguan dan mempertahankan estimasi posisi dalam batas yang dapat diterima untuk navigasi.
+
+\subsection{Pencapaian Hasil terhadap Rumusan Masalah}
+\label{sec:pencapaian_rm}
+
+Hasil pengujian membuktikan bahwa rumusan masalah 1 mengenai integrasi segmentasi visual dengan rute titik acuan untuk manuver belok adaptif telah berhasil dicapai.
+Bukti kuantitatif meliputi keberhasilan penyelesaian rute dengan mode \emph{fusion} 100\% pada kedua skenario dengan akurasi destinasi di bawah 1 meter, sementara mode \emph{vision} dan GPS gagal menyelesaikan seluruh percobaan.
+Selain itu sistem mampu menghasilkan perencanaan lokal yang konsisten mengikuti geometri jalan pada seluruh tipe segmen (lurus, belok, bundaran) tanpa mengalami kegagalan sebagaimana mode \emph{vision} pada \emph{H-junction} dan belokan tajam.
+
+Hasil pengujian juga membuktikan bahwa rumusan masalah 2 mengenai ketahanan sistem terhadap gangguan GPS telah berhasil dicapai.
+Hal ini dibuktikan dengan kemampuan sistem untuk tetap bernavigasi saat GPS terganggu, baik melalui injeksi \emph{noise} maupun kondisi degradasi GPS di area Rektorat.
+Sistem mampu mempertahankan RMSE posisi dalam batas yang dapat diterima (0,705 m dengan \emph{noise} dan 1,07--1,56 m pada degradasi GPS alami) serta mampu memilih jalur yang benar meskipun GPS terganggu.
+
+\subsection{Keterbatasan Pengujian}
+\label{sec:keterbatasan}
+
+Beberapa keterbatasan dalam pengujian ini perlu dicatat. Pertama, DLIO yang digunakan sebagai \emph{base line} memiliki galat akumulatif sendiri karena berbasis odometri LiDAR-IMU, sehingga nilai RMSE yang dilaporkan mencakup galat DLIO di dalamnya, meskipun validasi terhadap data aktual posisi (meteran) telah menunjukkan bahwa DLIO memiliki RMSE hanya 0,134 m terhadap pengukuran fisik.
+Kedua, meskipun pengujian telah mencakup variasi waktu henti pada area Rektorat dan simulasi degradasi GPS, kondisi ini belum diuji pada kondisi urban yang lebih kompleks dengan banyak gedung tinggi, terowongan, atau area dengan sinyal GPS yang sangat buruk, sehingga generalisasi hasil pada lingkungan lain masih perlu dilakukan dengan hati-hati.
+Ketiga, seluruh pengujian dilakukan pada kecepatan rendah konstan ($\pm$8 km/jam), sehingga performa pada kecepatan yang lebih tinggi atau bervariasi belum tervalidasi.

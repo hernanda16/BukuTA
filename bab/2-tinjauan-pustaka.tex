@@ -2,145 +2,225 @@
 \label{chap:tinjauanpustaka}
 
 \section{Hasil Penelitian Terdahulu}
-\label{sec:hasil_terdahulu}
+\label{sec:hasilpenelitianterdahulu}
 
-% [TEMPLATE] Uraikan hasil penelitian terdahulu yang relevan dengan topik Anda.
-% Gunakan \parencite{key} untuk sitasi. Minimal 2-3 referensi.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua \parencite{contoh2019}. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur \parencite{contoh2020}. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-\section{Teori/Konsep Dasar}
-\label{sec:konsep dasar}
-
-\subsection{Konsep Pertama}
-\label{sec:konsep_pertama}
-
-% [TEMPLATE] Jelaskan konsep/teori pertama yang mendasari penelitian Anda.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris \parencite{contoh2019}.
-
-\begin{figure}[H] \centering
-  \includegraphics[scale=0.35]{gambar/dummy_image.jpg}
-  \caption{Contoh gambar penjelasan konsep}
-  \label{fig:contoh_gambar}
-\end{figure}
-
-Dengan menggunakan konsep ini, dapat diperoleh persamaan sebagai berikut:
-
-\begin{equation}
-  \label{eq:contoh_persamaan}
-  \begin{aligned}
-    x &= L_1 \cos \theta_1 + L_2 \cos(\theta_1 + \theta_2), \\
-    y &= L_1 \sin \theta_1 + L_2 \sin(\theta_1 + \theta_2).
-  \end{aligned}
-\end{equation}
-
-Persamaan tersebut digunakan untuk menghitung posisi berdasarkan parameter yang diberikan.
-
-\subsection{Konsep Kedua}
-\label{sec:konsep_kedua}
-
-% [TEMPLATE] Jelaskan konsep/teori kedua.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit \parencite{contoh2020}. Berikut adalah ilustrasi dari konsep tersebut:
-
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}{0.45\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{gambar/dummy_image.jpg}
-    \caption{Sub-gambar pertama}
-    \label{fig:sub_gambar_1}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{0.45\textwidth}
-    \centering
-    \includegraphics[width=\textwidth]{gambar/dummy_image.jpg}
-    \caption{Sub-gambar kedua}
-    \label{fig:sub_gambar_2}
-  \end{subfigure}
-  \caption{Contoh subfigure dua gambar berdampingan}
-  \label{fig:contoh_subfigure}
-\end{figure}
-
-Persamaan matematis yang terkait adalah sebagai berikut:
-
-\begin{equation}
-  \label{eq:contoh_theta}
-  \theta = \tan^{-1}\left(\frac{y}{x}\right) + \cos^{-1}\left(\frac{L_1^2 + x^2 + y^2 - L_2^2}{2L_1\sqrt{x^2 + y^2}}\right).
-\end{equation}
-
-\subsection{Konsep Ketiga}
-\label{sec:konsep_ketiga}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Terdapat beberapa metode yang umum digunakan, antara lain:
-\begin{itemize}
-  \item Metode pertama: deskripsi singkat metode pertama.
-  \item Metode kedua: deskripsi singkat metode kedua.
-  \item Metode ketiga: deskripsi singkat metode ketiga.
-\end{itemize}
-
-\begin{equation}
-  \label{eq:interpolasi}
-  x(t) = x_1 + (x_2 - x_1)t, \quad y(t) = y_1 + (y_2 - y_1)t, \quad 0 \leq t \leq 1.
-\end{equation}
-
-\begin{figure}[H] \centering
-  \includegraphics[scale=0.65]{gambar/dummy_image.jpg}
-  \caption{Contoh gambar ilustrasi metode}
-  \label{fig:contoh_ilustrasi}
-\end{figure}
-
-\subsection{Konsep Keempat}
-\label{sec:konsep_keempat}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fase pergerakan dibagi menjadi:
-\begin{itemize}
-  \item Fase pertama: deskripsi fase pertama.
-  \item Fase kedua: deskripsi fase kedua.
-\end{itemize}
-
-\begin{figure}[H] \centering
-  \includegraphics[scale=1.5]{gambar/dummy_image.jpg}
-  \caption{Contoh gambar pola/gait}
-  \label{fig:contoh_gait}
-\end{figure}
-
-\subsection{Konsep Kelima}
-\label{sec:konsep_kelima}
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tabel berikut menunjukkan struktur data yang digunakan.
+Sejumlah penelitian mengenai segmentasi visual telah dilakukan, di antaranya oleh \textcite{Dharma2025PerformanceEvaluation} dan \textcite{wang2023internimage}.
+Penelitian \textcite{Dharma2025PerformanceEvaluation} menjelaskan bahwa performa \emph{DeepLabV3 Plus} dengan \emph{backbone} ResNet-50 yang dilatih dengan dataset lokal ITS pada malam hari mendapatkan performa paling baik mencapai \emph{mean Intersection over Union} (mIoU) 76,45\% dan \emph{Pixel Accuracy} 99,64\% pada kelas jalan.
+Sementara itu, penelitian \textcite{wang2023internimage} mengusulkan \emph{InternImage} sebagai \emph{backbone} segmentasi berbasis \emph{Deformable Convolution v3} (DCNv3) yang dipralatih dengan dataset global Mapillary Vistas dan dilakukan proses \emph{fine-tuning} pada dataset global Cityscapes, mendapatkan mIoU yang lebih tinggi yaitu 87,0\% pada dataset validasi Cityscapes.
+Terdapat juga penelitian yang berfokus pada optimalisasi model \emph{deep-learning} sehingga model dapat berjalan secara \emph{real-time} pada komputer kendaraan.
+Penelitian itu di antaranya adalah penelitian \textcite{zhou2022exploring} yang menunjukkan bahwa \emph{TensorRT} mampu mempercepat \emph{inference} model hingga 1,6-2 kali lipat melalui teknik \emph{layer fusion} dan optimalisasi memori, serta hingga 3,7 kali lipat dengan kuantisasi INT8 tanpa penurunan akurasi yang signifikan.
+Perbandingan penelitian segmentasi visual tersebut disajikan pada Tabel \ref{tab:perbandingan_terdahulu}.
 
 \begin{table}[H]
   \centering
-  \caption{Contoh tabel struktur data}
-  \label{tab:contoh_struktur}
-  \renewcommand{\arraystretch}{1.5}
-  \begin{tabular}{|c|c|c|c|c|c|}
+  \caption{Perbandingan penelitian segmentasi visual}
+  \label{tab:perbandingan_terdahulu}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{p{2.5cm}cc}
     \hline
-    \textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} & \textbf{Header 4} & \textbf{Header 5} & \textbf{Header 6} \\
+    \textbf{Parameter} & \textbf{(Dharma et al., 2025)} & \textbf{(Wang et al., 2023)} \\
     \hline
-    0xFF & 0xFF & ID & Length & Instruction & Checksum \\
+    Arsitektur & DeepLabV3+ & InternImage (DCNv3) \\
+    \emph{Dataset} & ITS lokal (malam) & Mapillary + Cityscapes \\
+    mIoU & 76,45\% & 87,0\% \\
+    Navigasi & Tidak & Tidak \\
     \hline
   \end{tabular}
 \end{table}
 
-Tabel~\ref{tab:contoh_instruksi} menampilkan daftar instruksi yang tersedia.
+Penelitian yang membahas lokalisasi dan perencanaan trajektori juga telah dilakukan, di antaranya oleh \textcite{Zazuli2024SensorFusion} dan \textcite{Philion2020LSS}.
+Hasil penelitian \textcite{Zazuli2024SensorFusion} mendapatkan rata-rata eror 0.43 m pada laju kontrol 50 Hz dengan menggabungkan data sensor GNSS, odometri roda, dan IMU dengan metode \emph{Extended Kalman Filter} (EKF).
+Sistem lokalisasi ini masih mengandalkan GPS sebagai acuan utama, sehingga ketika sinyal GPS terganggu, sistem tidak memiliki mekanisme untuk tetap bernavigasi.
+Sementara itu, penelitian \emph{trajectory sampling} dari \emph{Lift, Splat, Shoot} (LSS) oleh \textcite{Philion2020LSS} memperkenalkan mekanisme \emph{shooting} trajektori pada representasi \emph{Bird's Eye View} (BEV) yang memungkinkan pemilihan trajektori berdasarkan \emph{cost} terendah.
 
-\begin{table}[H]
-\centering
-\caption{Contoh tabel instruksi}
-\label{tab:contoh_instruksi}
-\begin{tabular}{|c|l|p{8cm}|}
-\hline
-\textbf{Kode} & \textbf{Instruksi} & \textbf{Deskripsi} \\
-\hline
-0x01 & Instruksi A & Deskripsi dari instruksi A. \\
-\hline
-0x02 & Instruksi B & Deskripsi dari instruksi B. \\
-\hline
-0x03 & Instruksi C & Deskripsi dari instruksi C. \\
-\hline
-0x83 & Instruksi D & Deskripsi dari instruksi D. \\
-\hline
-\end{tabular}
-\end{table}
+
+\section{Dasar Teori}
+\label{sec:dasarteori}
+
+\subsection{Segmentasi Semantik Visual dan Optimasi \emph{TensorRT}}
+\label{subsec:segmentasi-semantik}
+
+Segmentasi semantik visual merupakan proses klasifikasi setiap piksel pada citra ke dalam kelas tertentu, yang dalam konteks kendaraan otonom digunakan untuk mengenali area jalan yang dapat dilalui \parencite{wang2023internimage}.
+Berbeda dengan \emph{instance segmentation} yang membedakan objek individu, segmentasi semantik memberikan label pixel tanpa peduli informasi objek, sehingga lebih fokus pada pemahaman area jalan secara keseluruhan.
+Perbedaan ini ditunjukkan pada Gambar \ref{fig:segmentasi_visual} dimana semua piksel dilabeli berdasarkan kelasnya.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{gambar/semantic_vs_other.png}
+  \caption{Perbandingan segmentasi semantik, klasifikasi dan lokalisasi, deteksi objek, dan \emph{instance segmentation} \parencite{Jaikumar2022MaskRCNN}}
+  \label{fig:segmentasi_visual}
+\end{figure}
+
+InternImage merupakan salah satu arsitektur \emph{backbone} segmentasi dengan \emph{Deformable Convolution v3} (DCNv3) yang memiliki keunggulan dalam mengatasi keterbatasan konvolusi reguler \parencite{wang2023internimage}.
+Tidak seperti pada konvolusi tradisional yang mengambil sampel piksel pada grid yang tetap, \emph{Deformable Convolution} mampu melakukan sampling piksel secara adaptif mengikuti bentuk objek pada citra seperti yang ditunjukkan pada Gambar \ref{fig:dcn}.
+Kemampuan ini sangat berguna pada bentuk jalan yang beragam, seperti tikungan atau persimpangan, sehingga model dapat mengenali area jalan dengan lebih akurat.
+Model ini menempati peringkat pertama di antara model \emph{open-source} segmentasi pada \emph{benchmark} Cityscapes pada kategori mIoU \emph{class} sehingga digunakan pada penelitian ini.
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.57\textwidth]{gambar/traditional_conv_vs_dcn.jpg}
+  \caption{Perbandingan konvolusi tradisional dan Deformable Convolution \parencite{MOU2025130770}}
+  \label{fig:dcn}
+\end{figure}
+
+\emph{TensorRT} merupakan \emph{platform} optimasi \emph{inference} dari NVIDIA yang mempercepat eksekusi model \emph{deep learning} melalui dua teknik utama.
+Pertama, \emph{layer fusion} menggabungkan beberapa \emph{layer} yang berurutan menjadi satu operasi komputasi GPU, sehingga mengurangi \emph{overhead} pembacaan dan penulisan data antar \emph{layer} \parencite{zhou2022exploring}.
+Kedua, kuantisasi presisi ke \emph{half-precision floating-point} (FP16) mengurangi ukuran bobot model dari 32-bit menjadi 16-bit per parameter.
+Berbeda dengan kuantisasi INT8 yang memerlukan kalibrasi, FP16 tidak memerlukan dataset kalibrasi dan mempertahankan akurasi yang sangat dekat dengan presisi penuh \parencite{zhou2022exploring}.
+Kombinasi kedua teknik ini memungkinkan model segmentasi yang berukuran besar untuk dijalankan secara \emph{real-time} pada GPU kendaraan.
+
+\subsection{Kalibrasi Kamera dan Transformasi \emph{Bird's Eye View}}
+\label{subsec:bev}
+
+\emph{Bird's Eye View} (BEV) merupakan representasi pandangan atas (\emph{top-down view}) yang mempertahankan proporsi jarak dan sudut sebenarnya pada bidang jalan.
+Transformasi dari citra kamera ke BEV pada penelitian ini menggunakan model kalibrasi kamera \emph{omnidirectional} yang dikembangkan oleh \textcite{Scaramuzza2006ICVS}.
+Metode ini memodelkan fungsi proyeksi kamera sebagai deret Taylor pada persamaan \eqref{eq:scaramuzza_taylor}.
+
+\begin{equation}
+  f(\rho) = a_0 + a_1 \rho + a_2 \rho^2 + \ldots + a_N \rho^N,
+  \label{eq:scaramuzza_taylor}
+\end{equation}
+
+Variabel $\rho$ adalah jarak radial dari pusat distorsi dan $a_0, a_1, \ldots, a_N$ adalah koefisien polinomial yang diperoleh dari proses kalibrasi menggunakan pola papan catur pada beberapa orientasi berbeda yang ditunjukkan pada Gambar \ref{fig:calibration}.
+Parameter kalibrasi kemudian digunakan untuk membangun \emph{remap maps} yang memetakan setiap piksel pada citra BEV ke piksel yang bersesuaian pada citra kamera asli seperti yang ditunjukkan pada Gambar \ref{fig:construction}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{gambar/chessboard_orientation.png}
+  \caption{Proses kalibrasi kamera omnidirectional menggunakan pola papan catur \parencite{Scaramuzza2006ICVS}}
+  \label{fig:calibration}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{gambar/konstruksi_3d.png}
+  \caption{Hasil gambar yang telah direkonstruksi ulang ke dalam bentuk 3D menggunakan parameter kalibrasi \parencite{Scaramuzza2006ICVS}}
+  \label{fig:construction}
+\end{figure}
+
+\subsection{Sensor Fusion dengan \emph{Kalman Filter}}
+\label{subsec:kalman-filter}
+
+\emph{Kalman Filter} merupakan estimator rekursif yang mampu memperkirakan \emph{state} dari suatu sistem berdasarkan pengukuran yang mengandung \emph{noise}.
+Secara garis besar, Kalman Filter bekerja dalam dua tahap yaitu tahap prediksi (\emph{State Extrapolation Equation}) dan tahap koreksi (\emph{State Update Equation}).
+Tahap prediksi merupakan proses proyeksi \emph{state} sekarang ke langkah waktu berikutnya menggunakan model sistem.
+Sedangkan tahap koreksi merupakan proses memperbarui hasil prediksi dengan data pengukuran aktual \parencite{Becker2024KF}.
+Kedua tahap ini dilakukan berulang membentuk siklus prediksi-koreksi secara terus-menerus yang ditampilkan pada Gambar \ref{fig:kalman_works}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{gambar/kalman_works.png}
+  \caption{Siklus prediksi dan koreksi Kalman Filter \parencite{Barfoot2017}}
+  \label{fig:kalman_works}
+\end{figure}
+
+Untuk menerapkan siklus prediksi-koreksi tersebut, diperlukan model sistem yang mampu mendeskripsikan dinamika \emph{state} yang akan diestimasi.
+Model \emph{state} yang digunakan pada penelitian ini adalah vektor posisi-kecepatan dalam kerangka koordinat lokal.
+
+\textbf{Tahap Prediksi.} Prediksi \emph{state} dilakukan menggunakan persamaan berikut:
+
+\begin{equation}
+  \hat{x}_k^- = A \hat{x}_{k-1} + B u_{k-1},
+  \label{eq:kf_predict_x}
+\end{equation}
+\begin{equation}
+  P_k^- = A P_{k-1} A^\top + Q,
+  \label{eq:kf_predict_p}
+\end{equation}
+
+Pada persamaan \eqref{eq:kf_predict_x}, $A$ merupakan matriks transisi sistem yang memproyeksikan \emph{state} dari langkah waktu sebelumnya ke langkah waktu sekarang, $B$ merupakan matriks masukan yang memetakan pengaruh vektor masukan terhadap perubahan \emph{state}, $\hat{x}_k^-$ adalah \emph{state} hasil prediksi (\emph{priori}), $\hat{x}_{k-1}$ adalah \emph{state} koreksi sebelumnya (\emph{posteriori}), dan $u_{k-1}$ adalah vektor masukan dari sensor inersia.
+Persamaan \eqref{eq:kf_predict_p} disebut \emph{Covariance Extrapolation Equation}, di mana $P_k^-$ merupakan kovarians estimasi \emph{priori}, $P_{k-1}$ merupakan kovarians estimasi sebelumnya, dan $Q$ merupakan kovarians \emph{process noise} yang mewakili ketidakpastian model sistem. Kovarians selalu ikut dipropagasi karena Kalman Filter memperlakukan \emph{state} sebagai variabel acak berdistribusi normal \parencite{Becker2024KF}.
+Diskritisasi sistem kontinu ke diskrit dilakukan menggunakan metode \emph{matrix exponential} sebagaimana dijelaskan oleh \textcite{Dahdah2025}.
+
+\textbf{Tahap Koreksi.} Setelah prediksi diperoleh, Kalman Filter menghitung selisih antara pengukuran aktual dengan prediksi. Selisih ini disebut \emph{innovation} atau \emph{residual} yang ditunjukkan pada suku $(z_k - C \hat{x}_k^-)$ di persamaan \eqref{eq:kf_update} \parencite{Barfoot2017}. \emph{Innovation} kemudian diberi bobot oleh \emph{Kalman Gain} dan ditambahkan ke prediksi:
+
+\begin{equation}
+  K_k = P_k^- C^\top (C P_k^- C^\top + R)^{-1},
+  \label{eq:kf_gain}
+\end{equation}
+\begin{equation}
+  \hat{x}_k = \hat{x}_k^- + K_k (z_k - C \hat{x}_k^-),
+  \label{eq:kf_update}
+\end{equation}
+
+Pada persamaan tersebut, $z_k$ merupakan vektor pengukuran dari sensor, $C$ merupakan matriks observasi yang memetakan \emph{state} ke ruang pengukuran, $R$ merupakan kovarians \emph{measurement noise}, dan $K_k$ merupakan \emph{Kalman Gain}.
+
+\emph{Kalman Gain} ($K$) merupakan inti dari Kalman Filter.
+Nilainya dihitung ulang pada setiap iterasi berdasarkan $P_k^-$ dan $R$ \parencite{Becker2024KF}.
+Jika $R$ kecil (pengukuran akurat), $K$ membesar sehingga estimasi lebih bergantung pada pengukuran.
+Sebaliknya, jika $P^-$ kecil (prediksi akurat), $K$ mengecil sehingga estimasi lebih bergantung pada prediksi.
+Hal inilah yang membedakan Kalman Filter dari \emph{A-B filter} yang memiliki \emph{gain} tetap.
+Kalman Filter bersifat adaptif terhadap perubahan kualitas data secara \emph{real-time} \parencite{Becker2024KF}.
+
+Setelah \emph{state} diperbarui, kovarians estimasi juga harus diperbarui. Bentuk paling sederhana dari pembaruan kovarians adalah:
+
+\begin{equation}
+  P_k = (I - K_k C) P_k^-,
+  \label{eq:kf_cov_simple}
+\end{equation}
+
+Meskipun lebih ringkas, bentuk \eqref{eq:kf_cov_simple} rentan kehilangan sifat simetris dan \emph{positive semi-definite} akibat pembulatan numerik \emph{floating-point} sehingga dapat menyebabkan divergensi filter. Untuk mengatasi hal ini, Barfoot merekomendasikan \emph{Joseph stabilized form} \parencite{Barfoot2017}:
+
+\begin{equation}
+  P_k = (I - K_k C) P_k^- (I - K_k C)^\top + K_k R K_k^\top,
+  \label{eq:kf_cov_update}
+\end{equation}
+
+Pada persamaan tersebut, $I$ merupakan matriks identitas. Bentuk Joseph menjamin $P_k$ tetap simetris dan \emph{positive semi-definite} selama $R$ \emph{positive semi-definite}, sehingga mencegah divergensi numerik pada implementasi \parencite{Barfoot2017}.
+
+\subsection{\emph{Bicycle Model} dan Kinematika Kendaraan}
+\label{subsec:bicycle-model}
+
+\emph{Bicycle model} merupakan penyederhanaan model kendaraan \emph{Ackermann} empat roda menjadi model dua roda, di mana sepasang roda depan digabung menjadi satu roda kemudi dan sepasang roda belakang digabung menjadi satu roda penggerak \parencite{BouGhosn2024ITSC}. Model ini mengasumsikan tidak ada \emph{slip} pada kedua roda dan mengabaikan dinamika \emph{pitch} dan \emph{roll}. Persamaan kinematika \emph{bicycle model} dinyatakan sebagai:
+
+\begin{equation}
+  \begin{aligned}
+    \dot{X} &= v \cos(\theta + \beta), \\
+    \dot{Y} &= v \sin(\theta + \beta), \\
+    \dot{\theta} &= \dfrac{v \tan \Phi \cos \beta}{l_f + l_r}, \\
+    \beta &= \arctan\left(\dfrac{l_r \tan \Phi}{l_f + l_r}\right),
+  \end{aligned}
+  \label{eq:bicycle_kinematic}
+\end{equation}
+
+Variabel $v$ adalah kecepatan longitudinal, $\theta$ adalah sudut \emph{yaw}, $\Phi$ adalah sudut kemudi roda depan, $\beta$ adalah sudut \emph{side-slip}, serta $l_f$ dan $l_r$ masing-masing adalah jarak pusat massa ke as roda depan dan belakang \parencite{BouGhosn2024ITSC}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{gambar/bicycle_model.png}
+  \caption{Model kinematika kendaraan \parencite{Li2024GaussianPSM}}
+  \label{fig:bicyclemodel}
+\end{figure}
+
+\emph{Kinematic bicycle model} dapat dianggap valid hanya terbatas pada percepatan lateral $a_y < 0{,}5\mu g$, sehingga model ini hanya akurat pada kecepatan rendah dan jalan datar \parencite{BouGhosn2024ITSC}. Hubungan geometris antara sudut kemudi dan kurvatur lintasan diberikan oleh:
+
+\begin{equation}
+  \Phi = \arctan(\kappa \cdot L),
+  \label{eq:steering_curvature}
+\end{equation}
+
+dengan $\kappa$ adalah kurvatur lintasan dan $L = l_f + l_r$ adalah \emph{wheelbase} kendaraan. Hubungan ini memungkinkan konversi langsung antara kurvatur lintasan yang dihasilkan oleh \emph{planner} trajektori menjadi sudut kemudi yang dapat dieksekusi oleh aktuator kendaraan.
+
+\subsection{\emph{Trajectory Sampling} Berbasis \emph{Circular Arc}}
+\label{subsec:arc-fan}
+
+\emph{Trajectory sampling} merupakan metode pemilihan lintasan yang membangkitkan sejumlah kandidat busur lingkaran pada rentang kurvatur yang \emph{feasible} bagi kendaraan, kemudian mengevaluasi setiap kandidat berdasarkan fungsi biaya untuk memilih lintasan optimal. Berbeda dengan \emph{pure pursuit} yang hanya mengevaluasi satu titik \emph{lookahead} dan menghasilkan satu kurvatur, \emph{trajectory sampling} mempertimbangkan banyak alternatif lintasan secara simultan.
+
+\textcite{Li2013AdaptivePreview} mengusulkan metode \emph{roadside sampling} pada \emph{adaptive preview path tracker}. Dalam pendekatan ini, lingkungan jalan lokal direpresentasikan dalam sistem koordinat \emph{body-frame} kendaraan, di mana jalan dideskripsikan melalui tiga kurva: $f_l(x)$ sebagai batas kiri jalan, $f_r(x)$ sebagai batas kanan jalan, dan $f_m(x) = (f_l(x) + f_r(x))/2$ sebagai garis tengah, sebagaimana diilustrasikan pada Gambar \ref{fig:roadside_sampling}. Untuk setiap titik \emph{sampling} $x_i$ di sepanjang sumbu longitudinal, dihitung kurvatur busur lingkaran yang menghubungkan posisi kendaraan ke titik $(x_i, f_m(x_i))$ menggunakan fungsi $\kappa(x_i) = 2y_i/(x_i^2 + y_i^2)$. Algoritma \emph{Find\_Feasible\_Trajectories} memeriksa kelayakan setiap busur berdasarkan batas maksimum kurvatur kendaraan ($|\kappa| \leq \kappa_{max}$) dan ketersediaan rentang kurvatur yang memenuhi batas kiri dan kanan jalan ($\kappa_{l,min} < \kappa_{r,max}$).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{gambar/local_road_body_frame.png}
+  \caption{Representasi lingkungan jalan dalam koordinat \emph{body-frame} kendaraan \parencite{Li2013AdaptivePreview}}
+  \label{fig:roadside_sampling}
+\end{figure}
+
+Pemilihan trajektori optimal dari himpunan kandidat \emph{feasible} dilakukan melalui fungsi utilitas tiga suku \parencite{Li2013AdaptivePreview}:
+
+\begin{equation}
+  i^* = \arg\min_i \left\{ \omega_1 \frac{x_N}{x_N + x_i} + \omega_2 \sum_{m=1}^{i} \frac{|f_d(x_m) - f_m(x_m)|}{s(x_i)}^2 + \omega_3 \, |\kappa(x_i) - \kappa_0|^2 \right\},
+  \label{eq:li_utility}
+\end{equation}
+
+\noindent dengan $\omega_1$, $\omega_2$, $\omega_3$ adalah bobot masing-masing suku, $x_N$ adalah jarak maksimum lingkungan lokal, $f_d(x)$ adalah lintasan yang diinginkan, $s(x_i)$ adalah panjang busur, dan $\kappa_0$ adalah kurvatur kendaraan saat ini. Suku pertama memprioritaskan jarak pandang yang lebih jauh, suku kedua meminimalkan \emph{cross-track error}, dan suku ketiga menjaga kelancaran perubahan kemudi.

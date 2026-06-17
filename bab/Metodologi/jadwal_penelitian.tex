@@ -1,21 +1,34 @@
-% [TEMPLATE] Isi tabel berikut dengan jadwal/rencana kegiatan penelitian.
-% Demonstrasi: timeline table dengan \cellcolor, \multirow, \resizebox.
-
-\sloppy
 Tahap pertama dalam penelitian ini adalah studi literatur untuk memahami konsep dasar dan teknologi yang relevan dengan topik penelitian.
+Studi literatur mencakup kajian terhadap penelitian terdahulu mengenai segmentasi visual, fusi sensor dengan Kalman Filter, navigasi berbasis waypoint, serta metode perencanaan lintasan untuk kendaraan otonom.
 
-Setelah memahami landasan teori, tahap berikutnya adalah perancangan sistem. Pada tahap ini dilakukan perancangan perangkat keras dan perangkat lunak.
+Setelah memahami landasan teori, tahap berikutnya adalah pengumpulan dan pengolahan data.
+Data segmen jalan dibuat menggunakan Google My Maps dan diekspor dalam format KML yang kemudian dikonversi menjadi waypoint dalam format GeoJSON.
+Data visual dikumpulkan melalui perekaman kamera depan kendaraan pada berbagai kondisi pencahayaan dan struktur jalan di lingkungan kampus ITS.
+Secara paralel, data sensor navigasi (GPS, IMU, dan odometri) direkam untuk keperluan pengembangan dan pengujian modul lokalisasi.
 
-Selanjutnya dilakukan implementasi dan pengujian sistem untuk memastikan fungsi yang diharapkan.
+Tahap perancangan sistem meliputi empat subsistem utama.
+Pertama, \emph{pipeline} persepsi visual yang mencakup pelatihan model InternImage dengan \emph{fine-tuning} pada dataset lokal ITS, konversi model ke \emph{engine} TensorRT, dan implementasi modul konversi masker biner ke \emph{point cloud}.
+Kedua, modul lokalisasi menggunakan Kalman Filter 4-keadaan yang memfusikan data GPS, IMU, dan odometri roda.
+Ketiga, perencanaan global berbasis graf segmen jalan dan algoritma Dijkstra.
+Keempat, perencanaan lokal berbasis \emph{corridor pursuit} dengan \emph{dual-mode target heading} yang mengintegrasikan data visual dan GPS.
 
-Tahap terakhir adalah analisis hasil dan penulisan laporan tugas akhir.
+Tahap implementasi mencakup integrasi seluruh modul perangkat lunak dalam kerangka ROS2, pemasangan sensor dan komputer pada kendaraan Omoda E5, serta konfigurasi komunikasi CAN FD untuk kendali kendaraan.
+Kalibrasi kamera menggunakan metode Scaramuzza dilakukan untuk memperoleh parameter proyeksi BEV.
 
-Rencana jadwal kegiatan pengerjaan tugas akhir dapat dilihat pada Tabel \ref{tbl:timeline} berikut:
+Tahap pengujian dilakukan dalam empat kategori.
+Pengujian subsistem persepsi visual mengevaluasi akurasi segmentasi dan laju inferensi.
+Pengujian subsistem lokalisasi mengevaluasi akurasi posisi terhadap data aktual dan terhadap DLIO pada berbagai kondisi jalan.
+Pengujian subsistem perencanaan lokal mengevaluasi kemampuan menghasilkan lintasan pada berbagai geometri jalan.
+Pengujian integrasi sistem mengevaluasi keberhasilan penyelesaian rute, akurasi destinasi, dan ketahanan terhadap gangguan GPS.
+
+Tahap terakhir adalah analisis hasil dan penyusunan laporan tugas akhir yang mencakup seluruh proses penelitian dari perancangan hingga pengujian.
+
+Rencana jadwal kegiatan pengerjaan tugas akhir dapat dilihat pada Tabel~\ref{tbl:timeline} berikut:
 
 \newcommand{\w}{}
 \newcommand{\G}{\cellcolor{gray}}
 \begin{table}[H]
-  \captionof{table}{Timeline Kegiatan Penelitian}
+  \caption{Timeline Kegiatan Penelitian}
   \label{tbl:timeline}
   \centering
   \resizebox{\textwidth}{!}{%
@@ -30,24 +43,28 @@ Rencana jadwal kegiatan pengerjaan tugas akhir dapat dilihat pada Tabel \ref{tbl
     \G & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
     \hline
 
+    Pengumpulan Data &
+    \w & \w & \G & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
+    \hline
+
     Perancangan Sistem &
-    \w & \w & \w & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
+    \w & \w & \w & \G & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w & \w \\
     \hline
 
     Implementasi &
-    \w & \w & \w & \w & \G & \G & \G & \G & \w & \w & \w & \w & \w & \w & \w & \w \\
+    \w & \w & \w & \w & \w & \w & \G & \G & \G & \G & \w & \w & \w & \w & \w & \w \\
     \hline
 
     Pengujian &
-    \w & \w & \w & \w & \w & \w & \w & \G & \G & \G & \G & \w & \w & \w & \w & \w \\
+    \w & \w & \w & \w & \w & \w & \w & \G & \G & \G & \G & \G & \w & \w & \w & \w \\
     \hline
 
-    Analisis &
+    Analisis Hasil &
     \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \G & \G & \G & \G & \w & \w \\
     \hline
 
     Penulisan Laporan &
-    \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \G & \G \\
+    \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \w & \G & \G & \G & \G \\
     \hline
   \end{tabular}
   } % akhir resizebox
