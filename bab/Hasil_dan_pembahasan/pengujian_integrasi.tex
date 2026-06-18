@@ -33,9 +33,9 @@ Untuk mengevaluasi kemampuan sistem dalam bernavigasi secara otonom pada jarak y
 \textbf{Parameter} & \textbf{Nilai} \\
 \hline
 Panjang lintasan DLIO (m)       & 3.674,03 \\
-Panjang lintasan KF (m)         & 3.674,21 \\
+Panjang lintasan Kalman Filter (m)         & 3.674,21 \\
 Selisih panjang (m)             & 0,19 (0,005\%) \\
-RMSE KF vs DLIO (m)             & 1,08 \\
+RMSE Kalman Filter vs DLIO (m)             & 1,08 \\
 Deviasi maksimum (m)            & 1,99 \\
 Kecepatan rata-rata (m/s)       & 1,91 (6,9 km/jam) \\
 Durasi (menit)                  & 31,99 \\
@@ -43,7 +43,7 @@ Durasi (menit)                  & 31,99 \\
 \end{tabular}
 \end{table}
 
-Selisih panjang lintasan antara KF dan DLIO hanya 0,19~m dari total 3.674~m, atau 0,005\%, menunjukkan bahwa sistem mampu melacak posisi secara konsisten tanpa akumulasi galat yang signifikan sepanjang perjalanan. RMSE posisi tercatat 1,08~m dengan deviasi maksimum 1,99~m.
+Selisih panjang lintasan antara Kalman Filter dan DLIO hanya 0,19~m dari total 3.674~m, atau 0,005\%, menunjukkan bahwa sistem mampu melacak posisi secara konsisten tanpa akumulasi galat yang signifikan sepanjang perjalanan. RMSE posisi tercatat 1,08~m dengan deviasi maksimum 1,99~m.
 
 Gambar~\ref{fig:uji2_full} dan~\ref{fig:uji2_zoom} menampilkan lintasan penuh dan cuplikan segmen.
 
@@ -62,7 +62,7 @@ Gambar~\ref{fig:uji2_full} dan~\ref{fig:uji2_zoom} menampilkan lintasan penuh da
         \caption{Cuplikan segmen}
         \label{fig:uji2_zoom}
     \end{subfigure}
-    \caption{Lintasan KF terhadap DLIO pada pengujian \emph{autonomous} jarak jauh 3,7~km.}
+    \caption{Lintasan Kalman Filter terhadap DLIO pada pengujian \emph{autonomous} jarak jauh 3,7~km.}
     \label{fig:uji2_far}
 \end{figure}
 
@@ -70,7 +70,7 @@ Gambar~\ref{fig:uji2_full} dan~\ref{fig:uji2_zoom} menampilkan lintasan penuh da
 \label{sec:completion_rate}
 
 Keberhasilan penyelesaian rute diukur untuk setiap metode operasi pada dua rute yang berbeda (lurus dan belok).
-Rute lurus memiliki panjang 141.15 meter, sedangkan rute belok memiliki panjang 78.52 meter.
+Rute lurus memiliki panjang 141,15 meter, sedangkan rute belok memiliki panjang 78,52 meter.
 Setiap metode diuji sebanyak 3 kali pada masing-masing rute kecuali metode GPS yang hanya diuji 1 kali pada setiap rute karena keterbatasan data titik acuan KML/GeoJSON yang tersedia.
 
 \begin{table}[H]

@@ -13,8 +13,8 @@ Berdasarkan hasil perancangan, implementasi, dan pengujian yang telah dilakukan,
 
     \item Fusi sensor menggunakan Kalman Filter mampu menghasilkan estimasi posisi yang akurat.
     Pengujian terhadap data aktual posisi (pita ukur) menunjukkan RMSE Kalman Filter sebesar 0,173 m dan RMSE kecepatan 0,138 m/s.
-    Pada 6 rute dengan panjang berbeda, KF secara konsisten memiliki RMSE lebih rendah daripada GPS.
-    Pada area Rektorat dengan degradasi GPS, KF mempertahankan RMSE 1,07--1,56 m sementara GPS mengalami \emph{drift} hingga 9,43 m.
+    Pada 6 rute dengan panjang berbeda, Kalman Filter secara konsisten memiliki RMSE lebih rendah daripada GPS.
+    Pada area Rektorat dengan degradasi GPS, Kalman Filter mempertahankan RMSE 1,07--1,56 m sementara GPS mengalami \emph{drift} hingga 9,43 m.
     Karakterisasi akurasi sudut hadap menunjukkan bahwa dengan penyaringan kecepatan dan akurasi, RMSE orientasi yaw IMU dapat ditekan hingga 0,67\textdegree\ terhadap GPS.
 
     \item Integrasi segmentasi visual dengan rute titik acuan GPS terbukti menghasilkan manuver belok adaptif sehingga menjawab rumusan masalah pertama.
@@ -24,7 +24,7 @@ Berdasarkan hasil perancangan, implementasi, dan pengujian yang telah dilakukan,
 
     \item Sistem terbukti mampu mempertahankan navigasi saat sinyal GPS mengalami gangguan, menjawab rumusan masalah kedua.
     Pada skenario injeksi \emph{noise} Gaussian ($\sigma = 0,2$ m), RMSE posisi meningkat 74,6\% menjadi 0,705 m namun sistem tetap bernavigasi tanpa kehilangan jalur.
-    Pada kondisi degradasi GPS alami di area Rektorat, KF tidak mengalami masalah signifikan meskipun GPS mengalami \emph{drift}.
+    Pada kondisi degradasi GPS alami di area Rektorat, Kalman Filter tidak mengalami masalah signifikan meskipun GPS mengalami \emph{drift}.
     Hasil ini menunjukkan bahwa mekanisme fusi sensor pada Kalman Filter efektif meredam dampak gangguan dan mempertahankan estimasi posisi dalam batas yang dapat diterima.
 \end{enumerate}
 

@@ -21,7 +21,7 @@ Bobot pralatih tersebut dapat diadaptasi ke \emph{dataset} lokal melalui \emph{f
 Namun, ukuran model yang besar memerlukan optimasi agar dapat berjalan secara \emph{real-time} pada komputer kendaraan.
 \textcite{zhou2022exploring} menunjukkan bahwa \emph{TensorRT} mampu mempercepat \emph{inference} model \emph{deep learning} hingga 1,6-2 kali lipat melalui teknik \emph{layer fusion} dan optimalisasi memori, serta hingga 3,7 kali lipat dengan kuantisasi INT8, tanpa penurunan akurasi yang signifikan.
 
-Di sisi lain, penelitian oleh \textcite{Zazuli2024SensorFusion} mengimplementasikan \emph{Extended Kalman Filter} (EKF) untuk memfusikan data GNSS, odometri roda, dan \emph{Inertial Measurement Unit} (IMU) pada mobil riset otonom ITS.
+Di sisi lain, penelitian oleh \textcite{Zazuli2024SensorFusion} mengimplementasikan \emph{Extended Kalman Filter} (EKF) untuk memfusikan data \emph{Global Navigation Satellite System} (GNSS), odometri roda, dan \emph{Inertial Measurement Unit} (IMU) pada mobil riset otonom ITS.
 Hasil fusi mencapai \emph{mean error} 0,43 m, lebih baik dibandingkan odometri saja yang memiliki \emph{mean error} 1,52 m.
 Meskipun demikian, penelitian tersebut hanya mencakup estimasi posisi (lokalisasi) dan belum membahas bagaimana data posisi digunakan untuk pengambilan keputusan navigasi seperti penentuan arah belok di persimpangan.
 Sistem navigasi eksisting pada mobil riset otonom ITS masih mengandalkan GPS sebagai acuan utama pengendali arah, sehingga kendaraan tidak memiliki kemampuan untuk mengoreksi posisi berdasarkan kondisi jalan pada saat itu.

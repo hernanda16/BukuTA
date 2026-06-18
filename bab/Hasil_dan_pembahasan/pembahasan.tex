@@ -15,20 +15,20 @@ Hal ini penting karena \emph{point cloud} hasil konversi menjadi masukan utama b
 \subsection{Pembahasan Lokalisasi}
 \label{sec:bahas_lokalisasi}
 
-Pengujian terhadap data aktual posisi menunjukkan bahwa DLIO memiliki RMSE terendah (0,134 m) di antara keempat metode yang diuji, menjelaskan pemilihan DLIO sebagai \emph{base line} untuk evaluasi yang lebih kompleks.
+Pengujian terhadap data aktual posisi menunjukkan bahwa DLIO memiliki RMSE terendah (0,134 m) di antara keempat metode yang diuji, menjelaskan pemilihan DLIO sebagai \emph{baseline} untuk evaluasi yang lebih kompleks.
 Kalman Filter mencapai RMSE 0,173 m terhadap data aktual berbeda 0,039 m di atas DLIO.
 Nilai ini konsisten dengan penelitian sebelumnya oleh \textcite{Zazuli2024SensorFusion} yang mencapai \emph{mean error} 0,43 m menggunakan EKF pada mobil riset otonom Institut Teknologi Sepuluh Nopember (iCar). 
 
-Pada estimasi kecepatan, terjadi perbedaan karakteristik yaitu data DLIO justru memiliki RMSE tertinggi (0,166 m/s) sementara KF, GPS, dan odometri menunjukkan performa setara (0,133--0,138 m/s).
+Pada estimasi kecepatan, terjadi perbedaan karakteristik yaitu data DLIO justru memiliki RMSE tertinggi (0,166 m/s) sementara Kalman Filter, GPS, dan odometri menunjukkan performa setara (0,133--0,138 m/s).
 Hal ini menunjukkan bahwa DLIO unggul dalam akurasi posisi namun memiliki estimasi kecepatan sesaat yang kurang halus, fenomena yang umum pada odometri berbasis LiDAR-IMU di mana estimasi kecepatan diperoleh dari diferensiasi posisi yang rentan terhadap derau.
 
-Pengujian pada 6 rute dengan panjang berbeda menunjukkan bahwa KF secara konsisten memiliki RMSE lebih rendah daripada GPS pada seluruh rute.
-Pada rute terpanjang robotika-k1mart (3431,6 m), RMSE KF 0,88 m berhasil menekan akumulasi galat yang mencapai 8,59 m pada odometri murni.
+Pengujian pada 6 rute dengan panjang berbeda menunjukkan bahwa Kalman Filter secara konsisten memiliki RMSE lebih rendah daripada GPS pada seluruh rute.
+Pada rute terpanjang robotika-k1mart (3431,6 m), RMSE Kalman Filter 0,88 m berhasil menekan akumulasi galat yang mencapai 8,59 m pada odometri murni.
 Hasil ini membuktikan efektivitas fusi sensor dalam membatasi pertumbuhan galat seiring bertambahnya jarak tempuh dan slip yang disebabkan oleh kondisi jalan yang tidak ideal.
 
-Analisis pada area Rektorat juga memberikan bukti ketahanan KF terhadap degradasi GPS.
-Pada 9 iterasi dengan variasi waktu henti, GPS mengalami \emph{drift} signifikan dengan RMSE mencapai 9,43 m dengan waktu henti 20,8 detik, sementara KF mempertahankan RMSE dalam rentang 1,07--1,56 m.
-Pola ini mengonfirmasi bahwa mekanisme fusi sensor pada KF mampu meredam dampak \emph{multipath} dan \emph{drift} GPS yang umum terjadi di area dengan gedung tinggi, sebagaimana dilaporkan oleh \textcite{Lee2022ResilientNavigation}.
+Analisis pada area Rektorat juga memberikan bukti ketahanan Kalman Filter terhadap degradasi GPS.
+Pada 9 iterasi dengan variasi waktu henti, GPS mengalami \emph{drift} signifikan dengan RMSE mencapai 9,43 m dengan waktu henti 20,8 detik, sementara Kalman Filter mempertahankan RMSE dalam rentang 1,07--1,56 m.
+Pola ini mengonfirmasi bahwa mekanisme fusi sensor pada Kalman Filter mampu meredam dampak \emph{multipath} dan \emph{drift} GPS yang umum terjadi di area dengan gedung tinggi, sebagaimana dilaporkan oleh \textcite{Lee2022ResilientNavigation}.
 
 Karakterisasi akurasi sudut hadap menunjukkan bahwa 58,2\% sampel GPS memiliki akurasi di bawah 2\textdegree.
 Dengan menerapkan batasan filter kecepatan dan akurasi sudut hadap, RMSE orientasi yaw IMU terhadap GPS dapat ditekan dari 13,27\textdegree\ menjadi 0,67\textdegree.
@@ -79,6 +79,6 @@ Sistem mampu mempertahankan RMSE posisi dalam batas yang dapat diterima (0,705 m
 \subsection{Keterbatasan Pengujian}
 \label{sec:keterbatasan}
 
-Beberapa keterbatasan dalam pengujian ini perlu dicatat. Pertama, DLIO yang digunakan sebagai \emph{base line} memiliki galat akumulatif sendiri karena berbasis odometri LiDAR-IMU, sehingga nilai RMSE yang dilaporkan mencakup galat DLIO di dalamnya, meskipun validasi terhadap data aktual posisi (meteran) telah menunjukkan bahwa DLIO memiliki RMSE hanya 0,134 m terhadap pengukuran fisik.
+Beberapa keterbatasan dalam pengujian ini perlu dicatat. Pertama, DLIO yang digunakan sebagai \emph{baseline} memiliki galat akumulatif sendiri karena berbasis odometri LiDAR-IMU, sehingga nilai RMSE yang dilaporkan mencakup galat DLIO di dalamnya, meskipun validasi terhadap data aktual posisi (meteran) telah menunjukkan bahwa DLIO memiliki RMSE hanya 0,134 m terhadap pengukuran fisik.
 Kedua, meskipun pengujian telah mencakup variasi waktu henti pada area Rektorat dan simulasi degradasi GPS, kondisi ini belum diuji pada kondisi urban yang lebih kompleks dengan banyak gedung tinggi, terowongan, atau area dengan sinyal GPS yang sangat buruk, sehingga generalisasi hasil pada lingkungan lain masih perlu dilakukan dengan hati-hati.
 Ketiga, seluruh pengujian dilakukan pada kecepatan rendah konstan ($\pm$8 km/jam), sehingga performa pada kecepatan yang lebih tinggi atau bervariasi belum tervalidasi.

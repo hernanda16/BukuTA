@@ -27,7 +27,7 @@
     \label{fig:camera_calibration}
 \end{figure}
 
-Citra yang awalnya mengalami distorsi lensa (Gambar \ref{fig:camera_before}) telah berhasil dikoreksi menjadi citra yang lebih geometris (Gambar \ref{fig:camera_after}) sesuai dengan dunia nyata. Model proyeksi kamera berupa parameter intrinsik dan koefisien polinomial yang memetakan koordinat piksel pada citra ke koordinat 3D di dunia nyata ditampilkan pada Gambar \ref{fig:projection_model}. Model proyeksi ini digunakan untuk membangun matriks transformasi yang mampu memetakan piksel citra dari koordinat 2D menjadi koordinat 3D, sehingga memungkinkan konversi dari citra kamera ke tampilan tampak atas (BEV).
+Citra yang awalnya mengalami distorsi lensa (Gambar~\ref{fig:camera_before}) telah berhasil dikoreksi menjadi citra yang lebih geometris (Gambar~\ref{fig:camera_after}) sesuai dengan dunia nyata. Model proyeksi kamera berupa parameter intrinsik dan koefisien polinomial yang memetakan koordinat piksel pada citra ke koordinat 3D di dunia nyata ditampilkan pada Gambar~\ref{fig:projection_model}. Model proyeksi ini digunakan untuk membangun matriks transformasi yang mampu memetakan piksel citra dari koordinat 2D menjadi koordinat 3D, sehingga memungkinkan konversi dari citra kamera ke tampilan tampak atas (BEV).
 
 \begin{figure}[H]
     \centering
@@ -48,7 +48,7 @@ Citra yang awalnya mengalami distorsi lensa (Gambar \ref{fig:camera_before}) tel
     \label{fig:proses_bev_calibration}
 \end{figure}
 
-Validasi transformasi BEV dilakukan dengan menggunakan papan kalibrasi yang ditempatkan sejauh 8 meter di depan kendaraan yang diukur dari pusat kamera. Penempatan papan yang ditunjukkan pada Gambar \ref{fig:kalibrasi_1} memungkinkan pengukuran jarak secara akurat menggunakan pita ukur. Terdapat 2 papan kalibrasi yang diletakkan sejajar dengan jarak antar papan sebesar 2,5 meter, masing-masing memiliki panjang 2,44 meter dan lebar 1,22 meter (Gambar \ref{fig:kalibrasi_2}). Citra ketika proses kalibrasi ditransformasikan menggunakan matriks transformasi dari kalibrasi Scaramuzza sehingga menghasilkan citra BEV yang menunjukkan posisi papan kalibrasi sesuai dengan jarak sebenarnya, sebagaimana ditunjukkan pada Gambar \ref{fig:bev_validation}. Hasil validasi menunjukkan bahwa transformasi BEV mampu memetakan piksel citra ke koordinat dunia nyata dengan akurasi yang dapat diterima, sehingga dapat digunakan untuk konversi mask segmentasi visual ke representasi \emph{point cloud} yang akurat bagi perencanaan navigasi.
+Validasi transformasi BEV dilakukan dengan menggunakan papan kalibrasi yang ditempatkan sejauh 8 meter di depan kendaraan yang diukur dari pusat kamera. Penempatan papan yang ditunjukkan pada Gambar~\ref{fig:kalibrasi_1} memungkinkan pengukuran jarak secara akurat menggunakan pita ukur. Terdapat 2 papan kalibrasi yang diletakkan sejajar dengan jarak antar papan sebesar 2,5 meter, masing-masing memiliki panjang 2,44 meter dan lebar 1,22 meter (Gambar~\ref{fig:kalibrasi_2}). Citra ketika proses kalibrasi ditransformasikan menggunakan matriks transformasi dari kalibrasi Scaramuzza sehingga menghasilkan citra BEV yang menunjukkan posisi papan kalibrasi sesuai dengan jarak sebenarnya, sebagaimana ditunjukkan pada Gambar~\ref{fig:bev_validation}. Hasil validasi menunjukkan bahwa transformasi BEV mampu memetakan piksel citra ke koordinat dunia nyata dengan akurasi yang dapat diterima, sehingga dapat digunakan untuk konversi mask segmentasi visual ke representasi \emph{point cloud} yang akurat bagi perencanaan navigasi.
 
 \begin{figure}[H]
     \centering

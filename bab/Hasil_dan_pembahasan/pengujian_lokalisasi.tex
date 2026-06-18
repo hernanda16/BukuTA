@@ -12,8 +12,8 @@ Evaluasi ini bertujuan mengukur galat estimasi yang dihasilkan sistem guna menda
 %
 % Pengukuran dilakukan sebanyak 6 iterasi pada lintasan sepanjang 20--30 meter dengan penanda titik acuan yang berjarak setiap 1 meter dan dicatat setiap waktu lap kendaraan bergerak dari satu titik ke titik berikutnya.
 
-Berdasarkan hasil pengujian lintasan per meter yang telah dilakukan, didapatkan data perbandingan waktu eksekusi setiap metode (DLIO, KF, GPS, dan odometri) terhadap waktu aktual yang diukur menggunakan \emph{stopwatch}.
-Data ini kemudian digunakan untuk menghitung RMSE estimasi posisi masing-masing metode terhadap data aktual yang disajikan pada Tabel \ref{tab:gt_fisik}.
+Berdasarkan hasil pengujian lintasan per meter yang telah dilakukan, didapatkan data perbandingan waktu eksekusi setiap metode (DLIO, Kalman Filter, GPS, dan odometri) terhadap waktu aktual yang diukur menggunakan \emph{stopwatch}.
+Data ini kemudian digunakan untuk menghitung RMSE estimasi posisi masing-masing metode terhadap data aktual yang disajikan pada Tabel~\ref{tab:gt_fisik}.
 Selain posisi, dilakukan juga evaluasi estimasi kecepatan terhadap data aktual yang dihitung dari perubahan posisi terhadap waktu.
 Tabel~\ref{tab:gt_fisik_vel} menyajikan RMSE kecepatan untuk keempat metode.
 
@@ -30,7 +30,7 @@ Jarak (m)  & 0--20 & 0--20 & 0--20 & 0--30 & 0--30 & 0--30 & -- \\
 Waktu (s)  & 19,6 & 17,2 & 13,7 & 29,0 & 22,1 & 19,9 & -- \\
 \hline
 RMSE DLIO  & 0,105 & 0,131 & 0,132 & 0,149 & 0,153 & 0,134 & 0,134 \\
-RMSE KF    & 0,163 & 0,124 & 0,128 & 0,171 & 0,266 & 0,188 & 0,173 \\
+RMSE Kalman Filter    & 0,163 & 0,124 & 0,128 & 0,171 & 0,266 & 0,188 & 0,173 \\
 RMSE GPS   & 0,207 & 0,124 & 0,150 & 0,190 & 0,223 & 0,138 & 0,174 \\
 RMSE Odom  & 0,277 & 0,192 & 0,153 & 0,116 & 0,254 & 0,091 & 0,218 \\
 \hline
@@ -47,20 +47,20 @@ RMSE Odom  & 0,277 & 0,192 & 0,153 & 0,116 & 0,254 & 0,091 & 0,218 \\
 \textbf{Metode} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{Rata-rata} \\
 \hline
 RMSE DLIO  & 0,121 & 0,146 & 0,225 & 0,123 & 0,167 & 0,211 & 0,166 \\
-RMSE KF    & 0,089 & 0,155 & 0,177 & 0,089 & 0,153 & 0,167 & 0,138 \\
+RMSE Kalman Filter    & 0,089 & 0,155 & 0,177 & 0,089 & 0,153 & 0,167 & 0,138 \\
 RMSE GPS   & 0,091 & 0,148 & 0,183 & 0,087 & 0,136 & 0,164 & 0,135 \\
 RMSE Odom  & 0,086 & 0,148 & 0,174 & 0,092 & 0,134 & 0,165 & 0,133 \\
 \hline
 \end{tabular}
 \end{table}
 
-Hasil pengujian menunjukkan bahwa DLIO memiliki RMSE posisi terendah dengan rata-rata 0,134 m, diikuti oleh KF (0,173 m), GPS (0,174 m), dan odometri (0,218 m).
-Meskipun KF memiliki RMSE yang sedikit lebih tinggi daripada GPS, perbedaannya tidak signifikan.
+Hasil pengujian menunjukkan bahwa DLIO memiliki RMSE posisi terendah dengan rata-rata 0,134 m, diikuti oleh Kalman Filter (0,173 m), GPS (0,174 m), dan odometri (0,218 m).
+Meskipun Kalman Filter memiliki RMSE yang sedikit lebih tinggi daripada GPS, perbedaannya tidak signifikan.
 Namun, odometri menunjukkan performa yang paling buruk dengan RMSE tertinggi.
 Berbeda dengan hasil RMSE posisi di mana DLIO unggul, pada estimasi kecepatan DLIO justru memiliki RMSE tertinggi dengan rata-rata 0,166 m/s.
-KF, GPS, dan odometri menunjukkan performa yang setara pada rentang 0,133--0,138 m/s.
+Kalman Filter, GPS, dan odometri menunjukkan performa yang setara pada rentang 0,133--0,138 m/s.
 
-Gambar  \ref{fig:gt_analysis} adalah hasil plot jarak, RMSE, dan kecepatan terhadap waktu untuk iterasi 2 (0--20 m, 19,6 s) yang digunakan untuk visualisasi data yang didapatkan.
+Gambar~\ref{fig:gt_analysis} adalah hasil plot jarak, RMSE, dan kecepatan terhadap waktu untuk iterasi 2 (0--20 m, 19,6 s) yang digunakan untuk visualisasi data yang didapatkan.
 
 \begin{figure}[H]
     \centering
@@ -94,8 +94,8 @@ Gambar  \ref{fig:gt_analysis} adalah hasil plot jarak, RMSE, dan kecepatan terha
 \label{sec:pengujian_kf_dlio}
 
 Berdasarkan hasil pengujian sebelumnya, DLIO memiliki akurasi posisi yang paling tinggi dengan RMSE rata-rata 0,134 m terhadap data aktual.
-Oleh karena itu, DLIO dipilih sebagai \emph{base line} untuk evaluasi lebih lanjut terhadap KF pada rute panjang dan kompleks.
-Pengujian dilakukan sebanyak 6 iterasi dengan berbagai kondisi jalan lurus, belokan, dan area dengan degradasi GPS kemudian diukur RMSE estimasi posisi Kalman Filter terhadap metode pembanding DLIO yang ditunjukkan pada Tabel \ref{tab:rmse_csv}.
+Oleh karena itu, DLIO dipilih sebagai \emph{baseline} untuk evaluasi lebih lanjut terhadap Kalman Filter pada rute panjang dan kompleks.
+Pengujian dilakukan sebanyak 6 iterasi dengan berbagai kondisi jalan lurus, belokan, dan area dengan degradasi GPS kemudian diukur RMSE estimasi posisi Kalman Filter terhadap metode pembanding DLIO yang ditunjukkan pada Tabel~\ref{tab:rmse_csv}.
 
 \begin{table}[H]
 \centering
@@ -125,11 +125,11 @@ Pengujian dilakukan sebanyak 9 iterasi dengan variasi waktu henti kendaraan. Tab
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Performa KF pada 9 iterasi area Rektorat dengan variasi waktu henti}
+\caption{Performa Kalman Filter pada 9 iterasi area Rektorat dengan variasi waktu henti}
 \label{tab:rektorat}
 \begin{tabular}{l c c c c c c}
 \hline
-\textbf{Loop} & \textbf{Durasi (s)} & \textbf{Waktu Henti (s)} & \textbf{RMSE KF (m)} & \textbf{RMSE GPS (m)} & \textbf{RMSE Odom (m)}\\
+\textbf{Loop} & \textbf{Durasi (s)} & \textbf{Waktu Henti (s)} & \textbf{RMSE Kalman Filter (m)} & \textbf{RMSE GPS (m)} & \textbf{RMSE Odom (m)}\\
 \hline
 1  & 82,4  & 0     & 1,5160 & 3,2440 & 1,1003 \\
 2  & 128,2 & 0     & 1,0723 & 2,4860 & 0,8895 \\
@@ -144,9 +144,9 @@ Pengujian dilakukan sebanyak 9 iterasi dengan variasi waktu henti kendaraan. Tab
 \end{tabular}
 \end{table}
 
-Pada seluruh iterasi, Kalman Filter menunjukkan ketahanan yang cukup baik terhadap degradasi sinyal GPS dengan rentang RMSE 1.07--1,56 m, yang jauh lebih baik dibandingkan dengan GPS yang mengalami peningkatan RMSE hingga 9,43 m.
+Pada seluruh iterasi, Kalman Filter menunjukkan ketahanan yang cukup baik terhadap degradasi sinyal GPS dengan rentang RMSE 1,07--1,56 m, yang jauh lebih baik dibandingkan dengan GPS yang mengalami peningkatan RMSE hingga 9,43 m.
 
-Gambar~\ref{fig:kf_dlio_comparison} menampilkan perbandingan lintasan KF terhadap DLIO pada kondisi normal (segmen \texttt{robotika}) dan kondisi degradasi GPS (area Rektorat).
+Gambar~\ref{fig:kf_dlio_comparison} menampilkan perbandingan lintasan Kalman Filter terhadap DLIO pada kondisi normal (segmen \texttt{robotika}) dan kondisi degradasi GPS (area Rektorat).
 
 \begin{figure}[H]
     \centering
@@ -163,7 +163,7 @@ Gambar~\ref{fig:kf_dlio_comparison} menampilkan perbandingan lintasan KF terhada
         \caption{Area Rektorat (GPS degradasi)}
         \label{fig:kf_rektorat}
     \end{subfigure}
-    \caption{Perbandingan performa KF terhadap DLIO pada kondisi normal dan degradasi GPS.}
+    \caption{Perbandingan performa Kalman Filter terhadap DLIO pada kondisi normal dan degradasi GPS.}
     \label{fig:kf_dlio_comparison}
 \end{figure}
 
@@ -218,7 +218,7 @@ kecepatan $>$ 1,0 \& akurasi sudut hadap $<$ 1\textdegree  & 2.273  & 0,67 \\
 \end{tabular}
 \end{table}
 
-Tanpa menggunakan batasan, RMSE orientasi yaw IMU terhadap sudut hadap GPS sangat tinggi sebesar 13,27\textdegree\.
+Tanpa menggunakan batasan, RMSE orientasi yaw IMU terhadap sudut hadap GPS sangat tinggi sebesar 13,27\textdegree\ .
 Kemudian dengan batasan kecepatan $>$ 1,0 m/s dan akurasi sudut hadap $<$ 1\textdegree, RMSE turun drastis menjadi 0,67\textdegree\ pada 2.273 sampel.
 Gambar~\ref{fig:heading_plots} menampilkan visualisasi data sudut hadap berupa histogram akurasi sudut hadap dan persebaran orientasi yaw IMU terhadap sudut hadap GPS.
 

@@ -29,7 +29,7 @@ Perbandingan penelitian segmentasi visual tersebut disajikan pada Tabel \ref{tab
 \end{table}
 
 Penelitian yang membahas lokalisasi dan perencanaan trajektori juga telah dilakukan, di antaranya oleh \textcite{Zazuli2024SensorFusion} dan \textcite{Philion2020LSS}.
-Hasil penelitian \textcite{Zazuli2024SensorFusion} mendapatkan rata-rata galat 0.43 m pada laju kontrol 50 Hz dengan menggabungkan data sensor GNSS, odometri roda, dan IMU dengan metode \emph{Extended Kalman Filter} (EKF).
+Hasil penelitian \textcite{Zazuli2024SensorFusion} mendapatkan rata-rata galat 0,43 m pada laju kontrol 50 Hz dengan menggabungkan data sensor GNSS, odometri roda, dan IMU dengan metode \emph{Extended Kalman Filter} (EKF).
 Sistem lokalisasi ini masih mengandalkan GPS sebagai acuan utama, sehingga ketika sinyal GPS terganggu, sistem tidak memiliki mekanisme untuk tetap bernavigasi.
 Sementara itu, penelitian \emph{trajectory sampling} dari \emph{Lift, Splat, Shoot} (LSS) oleh \textcite{Philion2020LSS} memperkenalkan mekanisme \emph{shooting} trajektori pada representasi \emph{Bird's Eye View} (BEV) yang memungkinkan pemilihan trajektori berdasarkan \emph{cost} terendah.
 
@@ -121,53 +121,53 @@ Model \emph{state} yang digunakan pada penelitian ini adalah vektor posisi-kecep
 \textbf{Tahap Prediksi.} Prediksi \emph{state} dilakukan menggunakan persamaan berikut:
 
 \begin{equation}
-  \hat{x}_k^- = A \hat{x}_{k-1} + B u_{k-1},
+  \hat{\mathbf{x}}_k^- = \mathbf{A} \hat{\mathbf{x}}_{k-1} + \mathbf{B} u_{k-1},
   \label{eq:kf_predict_x}
 \end{equation}
 \begin{equation}
-  P_k^- = A P_{k-1} A^\top + Q,
+  \mathbf{P}_k^- = \mathbf{A} \mathbf{P}_{k-1} \mathbf{A}^\top + \mathbf{Q},
   \label{eq:kf_predict_p}
 \end{equation}
 
-Pada persamaan \eqref{eq:kf_predict_x}, $A$ merupakan matriks transisi sistem yang memproyeksikan \emph{state} dari langkah waktu sebelumnya ke langkah waktu sekarang, $B$ merupakan matriks masukan yang memetakan pengaruh vektor masukan terhadap perubahan \emph{state}, $\hat{x}_k^-$ adalah \emph{state} hasil prediksi (\emph{priori}), $\hat{x}_{k-1}$ adalah \emph{state} koreksi sebelumnya (\emph{posteriori}), dan $u_{k-1}$ adalah vektor masukan dari sensor inersia.
-Persamaan \eqref{eq:kf_predict_p} disebut \emph{Covariance Extrapolation Equation}, di mana $P_k^-$ merupakan kovarians estimasi \emph{priori}, $P_{k-1}$ merupakan kovarians estimasi sebelumnya, dan $Q$ merupakan kovarians \emph{process noise} yang mewakili ketidakpastian model sistem. Kovarians selalu ikut dipropagasi karena Kalman Filter memperlakukan \emph{state} sebagai variabel acak berdistribusi normal \parencite{Becker2024KF}.
+Pada persamaan \eqref{eq:kf_predict_x}, $\mathbf{A}$ merupakan matriks transisi sistem yang memproyeksikan \emph{state} dari langkah waktu sebelumnya ke langkah waktu sekarang, $\mathbf{B}$ merupakan matriks masukan yang memetakan pengaruh vektor masukan terhadap perubahan \emph{state}, $\hat{\mathbf{x}}_k^-$ adalah \emph{state} hasil prediksi (\emph{priori}), $\hat{\mathbf{x}}_{k-1}$ adalah \emph{state} koreksi sebelumnya (\emph{posteriori}), dan $u_{k-1}$ adalah vektor masukan dari sensor inersia.
+Persamaan \eqref{eq:kf_predict_p} disebut \emph{Covariance Extrapolation Equation}, di mana $\mathbf{P}_k^-$ merupakan kovarians estimasi \emph{priori}, $\mathbf{P}_{k-1}$ merupakan kovarians estimasi sebelumnya, dan $\mathbf{Q}$ merupakan kovarians \emph{process noise} yang mewakili ketidakpastian model sistem. Kovarians selalu ikut dipropagasi karena Kalman Filter memperlakukan \emph{state} sebagai variabel acak berdistribusi normal \parencite{Becker2024KF}.
 Diskritisasi sistem kontinu ke diskrit dilakukan menggunakan metode \emph{matrix exponential} sebagaimana dijelaskan oleh \textcite{Dahdah2025}.
 
-\textbf{Tahap Koreksi.} Setelah prediksi diperoleh, Kalman Filter menghitung selisih antara pengukuran aktual dengan prediksi. Selisih ini disebut \emph{innovation} atau \emph{residual} yang ditunjukkan pada suku $(z_k - C \hat{x}_k^-)$ di persamaan \eqref{eq:kf_update} \parencite{Barfoot2017}. \emph{Innovation} kemudian diberi bobot oleh \emph{Kalman Gain} dan ditambahkan ke prediksi:
+\textbf{Tahap Koreksi.} Setelah prediksi diperoleh, Kalman Filter menghitung selisih antara pengukuran aktual dengan prediksi. Selisih ini disebut \emph{innovation} atau \emph{residual} yang ditunjukkan pada suku $(\mathbf{z}_k - \mathbf{C} \hat{\mathbf{x}}_k^-)$ di persamaan \eqref{eq:kf_update} \parencite{Barfoot2017}. \emph{Innovation} kemudian diberi bobot oleh \emph{Kalman Gain} dan ditambahkan ke prediksi:
 
 \begin{equation}
-  K_k = P_k^- C^\top (C P_k^- C^\top + R)^{-1},
+  \mathbf{K}_k = \mathbf{P}_k^- \mathbf{C}^\top (\mathbf{C} \mathbf{P}_k^- \mathbf{C}^\top + \mathbf{R})^{-1},
   \label{eq:kf_gain}
 \end{equation}
 \begin{equation}
-  \hat{x}_k = \hat{x}_k^- + K_k (z_k - C \hat{x}_k^-),
+  \hat{\mathbf{x}}_k = \hat{\mathbf{x}}_k^- + \mathbf{K}_k (\mathbf{z}_k - \mathbf{C} \hat{\mathbf{x}}_k^-),
   \label{eq:kf_update}
 \end{equation}
 
-Pada persamaan tersebut, $z_k$ merupakan vektor pengukuran dari sensor, $C$ merupakan matriks observasi yang memetakan \emph{state} ke ruang pengukuran, $R$ merupakan kovarians \emph{measurement noise}, dan $K_k$ merupakan \emph{Kalman Gain}.
+Pada persamaan tersebut, $\mathbf{z}_k$ merupakan vektor pengukuran dari sensor, $\mathbf{C}$ merupakan matriks observasi yang memetakan \emph{state} ke ruang pengukuran, $\mathbf{R}$ merupakan kovarians \emph{measurement noise}, dan $\mathbf{K}_k$ merupakan \emph{Kalman Gain}.
 
-\emph{Kalman Gain} ($K$) merupakan inti dari Kalman Filter.
-Nilainya dihitung ulang pada setiap iterasi berdasarkan $P_k^-$ dan $R$ \parencite{Becker2024KF}.
-Jika $R$ kecil (pengukuran akurat), $K$ membesar sehingga estimasi lebih bergantung pada pengukuran.
-Sebaliknya, jika $P^-$ kecil (prediksi akurat), $K$ mengecil sehingga estimasi lebih bergantung pada prediksi.
+\emph{Kalman Gain} ($\mathbf{K}$) merupakan inti dari Kalman Filter.
+Nilai $\mathbf{K}_k$ dihitung ulang pada setiap iterasi berdasarkan $\mathbf{P}_k^-$ dan $\mathbf{R}$ \parencite{Becker2024KF}.
+Jika $\mathbf{R}$ kecil (pengukuran akurat), $\mathbf{K}_k$ membesar sehingga estimasi lebih bergantung pada pengukuran.
+Sebaliknya, jika $\mathbf{P}_k^-$ kecil (prediksi akurat), $\mathbf{K}_k$ mengecil sehingga estimasi lebih bergantung pada prediksi.
 Hal inilah yang membedakan Kalman Filter dari \emph{A-B filter} yang memiliki \emph{gain} tetap.
 Kalman Filter bersifat adaptif terhadap perubahan kualitas data secara \emph{real-time} \parencite{Becker2024KF}.
 
 Setelah \emph{state} diperbarui, kovarians estimasi juga harus diperbarui. Bentuk paling sederhana dari pembaruan kovarians adalah:
 
 \begin{equation}
-  P_k = (I - K_k C) P_k^-,
+  \mathbf{P}_k = (\mathbf{I} - \mathbf{K}_k \mathbf{C}) \mathbf{P}_k^-,
   \label{eq:kf_cov_simple}
 \end{equation}
 
 Meskipun lebih ringkas, bentuk \eqref{eq:kf_cov_simple} rentan kehilangan sifat simetris dan \emph{positive semi-definite} akibat pembulatan numerik \emph{floating-point} sehingga dapat menyebabkan divergensi filter. Untuk mengatasi hal ini, Barfoot merekomendasikan \emph{Joseph stabilized form} \parencite{Barfoot2017}:
 
 \begin{equation}
-  P_k = (I - K_k C) P_k^- (I - K_k C)^\top + K_k R K_k^\top,
+  \mathbf{P}_k = (\mathbf{I} - \mathbf{K}_k \mathbf{C}) \mathbf{P}_k^- (\mathbf{I} - \mathbf{K}_k \mathbf{C})^\top + \mathbf{K}_k \mathbf{R} \mathbf{K}_k^\top,
   \label{eq:kf_cov_update}
 \end{equation}
 
-Pada persamaan tersebut, $I$ merupakan matriks identitas. Bentuk Joseph menjamin $P_k$ tetap simetris dan \emph{positive semi-definite} selama $R$ \emph{positive semi-definite}, sehingga mencegah divergensi numerik pada implementasi \parencite{Barfoot2017}.
+Pada persamaan tersebut, $\mathbf{I}$ merupakan matriks identitas. Bentuk Joseph menjamin $\mathbf{P}_k$ tetap simetris dan \emph{positive semi-definite} selama $\mathbf{R}$ \emph{positive semi-definite}, sehingga mencegah divergensi numerik pada implementasi \parencite{Barfoot2017}.
 
 \subsection{\emph{Bicycle Model} dan Kinematika Kendaraan}
 \label{subsec:bicycle-model}
@@ -242,7 +242,7 @@ Hasil koreksi distorsi metode DLIO ditunjukkan pada Gambar \ref{fig:dlio_motion_
 
 Algoritma ini menggunakan \emph{nonlinear geometric observer} yang memberikan estimasi \emph{state} dengan jaminan konvergensi kuat, yang digunakan untuk menginisialisasi integrasi IMU yang sensitif sehingga memungkinkan koreksi distorsi titik per titik secara cepat dan dapat diparalelkan.
 Validasi data DLIO dilakukan pada lima segmen pengujian dengan total panjang lintasan lebih dari 6 km.
-DLIO dalam konfigurasi \emph{continuous-time motion correction} mencatatkan RMSE terendah mencapai RMSE 0,0612 m pada lintasan sepanjang 97,2 m dan 0,32 m pada jarak 3063.42 m.
+DLIO dalam konfigurasi \emph{continuous-time motion correction} mencatatkan RMSE terendah mencapai RMSE 0,0612 m pada lintasan sepanjang 97,2 m dan 0,32 m pada jarak 3063,42 m.
 Meskipun demikian, perlu dicatat bahwa DLIO tetap memiliki galat akumulatif sendiri karena berbasis odometri LiDAR-IMU.
 
 \subsection{Dynamic Window Approach}

@@ -99,7 +99,7 @@ Data posisi GPS dalam format \emph{latitude/longitude} dikonversi ke kerangka EN
 
 \subsection{Kalman Filter \emph{State Vector Position-Velocity}}
 
-Perancangan lokalisasi dengan Kalman Filter menggunakan model \emph{position-velocity} yang mengestimasi posisi dan kecepatan kendaraan dalam kerangka ENU yang terdiri dari vektor \emph{state} $\hat{x} = [x, y, v_x, v_y]^\top$.
+Perancangan lokalisasi dengan Kalman Filter menggunakan model \emph{position-velocity} yang mengestimasi posisi dan kecepatan kendaraan dalam kerangka ENU yang terdiri dari vektor \emph{state} $\hat{\mathbf{x}} = [x, y, v_x, v_y]^\top$.
 Pemilihan model ini didasarkan pada ketersediaan sensor yang memberikan pengukuran posisi (GPS) dan kecepatan (GPS, odometri roda), serta masukan akselerasi dari IMU untuk prediksi model.
 Tabel~\ref{tab:kf_params} merangkum parameter utama Kalman Filter yang digunakan.
 
@@ -111,14 +111,50 @@ Tabel~\ref{tab:kf_params} merangkum parameter utama Kalman Filter yang digunakan
 \hline
 \textbf{Parameter} & \textbf{Nilai} & \textbf{Keterangan} \\
 \hline
-Vektor \emph{state}                    & $[x, y, v_x, v_y]^\top$ & Posisi dan kecepatan dalam ENU \\
+$\hat{\mathbf{x}}$                   & $[x, y, v_x, v_y]^\top$ & Posisi dan kecepatan dalam ENU \\
 Model sistem                           & Kontrol masukan ($u_k$) & Dengan masukan akselerasi IMU \\
 Laju pembaruan                         & 100 Hz & Periode 10 ms \\
-${R}_{odo}$                     & $3{,}25\times10^{-3}$ & \emph{Measurement noise} odometri \\
-${R}_{gps}$                     & Dinamis & Diperbarui berdasarkan data akurasi GPS \\
+$\mathbf{R}_{odo}$                     & $3{,}25\times10^{-3}$ & \emph{Measurement noise} odometri \\
+$\mathbf{R}_{gps}$                     & Dinamis & Diperbarui berdasarkan data akurasi GPS \\
 \hline
 \end{tabular}
 \end{table}
+
+Matriks transisi sistem $\mathbf{A}$, matriks observasi odometri $\mathbf{C}_{odo}$, dan matriks observasi GPS $\mathbf{C}_{gps}$ didefinisikan sebagai berikut:
+
+\begin{equation}
+\mathbf{A} = \begin{bmatrix}
+1 & 0 & dt & 0 \\
+0 & 1 & 0 & dt \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\qquad
+\mathbf{C}_{odo} = \begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\qquad
+\mathbf{C}_{gps} = \begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\label{eq:kf_matrices}
+\end{equation}
+
+Matriks kovarians derau proses $\mathbf{Q}$ diperoleh dari diskritisasi derau masukan akselerasi IMU:
+
+\begin{equation}
+\mathbf{Q} = \begin{bmatrix}
+\mathbf{Q}_{imu}\dfrac{dt^3}{3} & \mathbf{Q}_{imu}\dfrac{dt^2}{2}  \\[6pt]
+\mathbf{Q}_{imu}\dfrac{dt^3}{3} & \mathbf{Q}_{imu}\dfrac{dt^2}{2} \\[6pt]
+\end{bmatrix}
+\label{eq:kf_q}
+\end{equation}
+
+dengan $dt$ adalah periode waktu diskritisasi (10 ms) dan $\mathbf{Q}_{imu}$ adalah kovarians derau akselerasi IMU dari hasil kalibrasi Allan Variance (Tabel~\ref{tab:allan_variance}).
 
 Siklus Kalman Filter terdiri dari dua tahap utama yang dijalankan secara berulang.
 Pada tahap prediksi, akselerasi IMU yang telah dirotasi ke kerangka ENU digunakan untuk memproyeksikan \emph{state} dan kovarians ke langkah waktu berikutnya melalui model sistem kontrol masukan.
@@ -132,7 +168,7 @@ Fenomena ini dijelaskan oleh \textcite{BouGhosn2024ITSC} di mana kinematik kenda
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{gambar/error_odom_belok.png}
-    \caption{Perbandingan kecepatan Kalman Filter, Odom, GPS, dan DLIO saat kendaraan berbelok.}
+    \caption{Perbandingan kecepatan Kalman Filter, Odometri, GPS, dan DLIO saat kendaraan berbelok.}
     \label{fig:error_odom_belok}
 \end{figure}
 
@@ -143,7 +179,7 @@ Untuk mengatasi masalah ini, diterapkan mekanisme kovarians pengukuran GPS ($R_{
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{gambar/error_gps_diam.png}
-    \caption{Error posisi GPS saat kendaraan diam.}
+    \caption{Galat posisi GPS saat kendaraan diam.}
     \label{fig:error_gps_diam}
 \end{figure}
 
