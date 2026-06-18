@@ -7,17 +7,17 @@
 Navigasi merupakan proses menentukan posisi, arah gerak, dan jalur yang sesuai dengan tujuan yang ingin dicapai.
 Navigasi juga dipakai dalam sistem mobil otonom yang membuatnya mampu bergerak dari suatu titik ke titik yang lain secara mandiri tanpa bantuan manusia \parencite{Ondrus2020AutonomousCarsWork}.
 \emph{Global Positioning System} (GPS) menjadi teknologi navigasi yang umum digunakan karena kemampuannya memberikan informasi posisi global secara \emph{real-time}.
-Pengukuran posisi GPS bersifat independen terhadap pengukuran sebelumnya, sehingga eror posisi tidak terakumulasi seiring bertambahnya waktu tempuh.
+Pengukuran posisi GPS bersifat independen terhadap pengukuran sebelumnya, sehingga galat posisi tidak terakumulasi seiring bertambahnya waktu tempuh.
 Namun, akurasi GPS sangat bergantung pada kondisi lingkungan sekitar dan jumlah satelit yang dapat dijangkau oleh \emph{receiver} \parencite{Rahiman2013GPSNavigation}.
 Ketergantungan ini memiliki dampak serius ketika sinyal mengalami penurunan akurasi posisi atau degradasi.
 Pada kompetisi \emph{Indy Autonomous Challenge} (IAC) di Amerika Serikat, penurunan akurasi GPS dilaporkan sebagai salah satu penyebab kecelakaan kendaraan otonom \parencite{Lee2022ResilientNavigation}.
 Permasalahan ini juga dialami oleh mobil riset otonom Institut Teknologi Sepuluh Nopember (ITS) ketika beroperasi di lingkungan kampus yang memiliki banyak gedung tinggi dan pepohonan yang menghalangi sinyal GPS sehingga sistem memerlukan fusi sensor untuk mempertahankan estimasi posisi yang akurat \parencite{Zazuli2024SensorFusion}.
 
 Segmentasi visual merupakan pendekatan yang dapat melengkapi keterbatasan GPS karena memiliki kemampuan mengenali area jalan secara langsung dari citra kamera tanpa bergantung pada sinyal eksternal.
-Penelitian oleh \textcite{Dharma2025PerformanceEvaluation} menunjukkan bahwa \emph{DeepLabV3 Plus} dengan \emph{backbone} ResNet-50 mampu melakukan segmentasi jalan di lingkungan kampus ITS, mencapai \emph{mean Intersection over Union} (mIoU) 76,45\% pada dataset lokal yang diambil dari kamera mobil riset otonom ITS.
-Akan tetapi, penelitian tersebut hanya menggunakan dataset lokal dengan satu jenis kondisi di malam hari saja, sehingga tidak dapat digunakan sebagai acuan untuk kondisi siang hari yang memiliki pencahayaan berbeda.
-Segmentasi dengan arsitektur model lainnya yang diusulkan \textcite{wang2023internimage} menggunakan \emph{InternImage} sebagai \emph{backbone} segmentasi berbasis \emph{deformable convolution} yang dipralatih pada dataset Mapillary Vistas dan dilakukan proses \emph{fine-tuning} pada Cityscapes, mencapai mIoU 87,0\% pada dataset validasi Cityscapes.
-Bobot pralatih tersebut dapat diadaptasi ke dataset lokal melalui \emph{fine-tuning} sehingga tidak perlu melatih model dari awal.
+Penelitian oleh \textcite{Dharma2025PerformanceEvaluation} menunjukkan bahwa \emph{DeepLabV3 Plus} dengan \emph{backbone} ResNet-50 mampu melakukan segmentasi jalan di lingkungan kampus ITS, mencapai \emph{mean Intersection over Union} (mIoU) 76,45\% pada \emph{dataset} lokal yang diambil dari kamera mobil riset otonom ITS.
+Akan tetapi, penelitian tersebut hanya menggunakan \emph{dataset} lokal dengan satu jenis kondisi di malam hari saja, sehingga tidak dapat digunakan sebagai acuan untuk kondisi siang hari yang memiliki pencahayaan berbeda.
+Segmentasi dengan arsitektur model lainnya yang diusulkan \textcite{wang2023internimage} menggunakan \emph{InternImage} sebagai \emph{backbone} segmentasi berbasis \emph{deformable convolution} yang dipralatih pada \emph{dataset} Mapillary Vistas dan dilakukan proses \emph{fine-tuning} pada Cityscapes, mencapai mIoU 87,0\% pada \emph{dataset} validasi Cityscapes.
+Bobot pralatih tersebut dapat diadaptasi ke \emph{dataset} lokal melalui \emph{fine-tuning} sehingga tidak perlu melatih model dari awal.
 Namun, ukuran model yang besar memerlukan optimasi agar dapat berjalan secara \emph{real-time} pada komputer kendaraan.
 \textcite{zhou2022exploring} menunjukkan bahwa \emph{TensorRT} mampu mempercepat \emph{inference} model \emph{deep learning} hingga 1,6-2 kali lipat melalui teknik \emph{layer fusion} dan optimalisasi memori, serta hingga 3,7 kali lipat dengan kuantisasi INT8, tanpa penurunan akurasi yang signifikan.
 

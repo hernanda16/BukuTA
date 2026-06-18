@@ -21,8 +21,16 @@
 \end{tabularx}
 \endgroup
 
-% [TEMPLATE] Isi paragraf berikut dengan abstrak tugas akhir Anda (maksimal 200 kata).
-% Abstrak berisi latar belakang singkat, tujuan, metode, hasil utama, dan kesimpulan.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\begin{sloppypar}
+Navigasi mobil otonom di lingkungan kampus sangat bergantung pada GPS yang rentan mengalami penurunan akurasi akibat gedung tinggi dan pepohonan.
+Penelitian ini bertujuan mengintegrasikan segmentasi visual dengan data GPS untuk menghasilkan manuver belok yang adaptif dan mengurangi ketergantungan navigasi terhadap GPS.
+Sistem terdiri dari empat subsistem yaitu persepsi visual menggunakan InternImage dengan TensorRT (18 FPS, mIoU 0,9574), lokalisasi menggunakan Kalman Filter yang memfusikan GPS, IMU, dan odometri roda (RMSE 0,173 m terhadap data aktual), perencanaan rute global berbasis algoritma Dijkstra, dan perencanaan lokal berbasis \emph{Dynamic Window Approach} dengan \emph{Arc Fan}.
+Sensor yang digunakan meliputi kamera Leopard 120\textdegree, GPS u-blox ZED-F9P, IMU RION TL740D, dan odometri roda yang diintegrasikan melalui ROS2.
+Pengujian pada kendaraan Omoda E5 di lingkungan kampus ITS menunjukkan bahwa metode fusi mencapai keberhasilan penyelesaian rute 100\% dengan akurasi destinasi di bawah 1 meter, sementara metode vision dan GPS yang beroperasi secara terpisah gagal menyelesaikan seluruh percobaan.
+Pada pengujian lintasan dengan jarak 3,7 km, RMSE posisi tercatat 1,08 m dengan deviasi maksimum 1,99 m.
+Sistem juga mampu mempertahankan navigasi saat GPS mengalami degradasi, dengan RMSE 1,07--1,56 m pada area Rektorat dan 0,705 m pada simulasi injeksi \emph{gaussian noise}.
+Hasil penelitian menunjukkan bahwa integrasi segmentasi visual dengan data GPS merupakan syarat perlu untuk navigasi andal di lingkungan kampus, khususnya pada area dengan degradasi sinyal satelit.
+Pendekatan ini memberikan solusi navigasi yang lebih tangguh dibandingkan penggunaan GPS secara mandiri.
+\end{sloppypar}
 
-Kata Kunci: Kata Kunci 1, Kata Kunci 2, Kata Kunci 3, Kata Kunci 4, Kata Kunci 5
+Kata Kunci: Navigasi Mobil Otonom, Segmentasi Visual, Kalman Filter, GPS, DWA

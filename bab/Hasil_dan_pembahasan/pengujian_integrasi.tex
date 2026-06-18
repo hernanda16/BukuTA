@@ -119,7 +119,7 @@ Sedangkan metode lainnya gagal menyelesaikan rute sehingga tidak dapat diukur ak
 \label{sec:noise_robustness}
 
 Ketahanan sistem terhadap gangguan GPS diuji dengan membandingkan performa pada dua kondisi navigasi yang berbeda dengan rute yang sama.
-Pada kondisi pertama, sistem beroperasi tanpa injeksi kebisingan GPS ($\sigma = 0$), sedangkan pada kondisi kedua, sistem beroperasi dengan injeksi kebisingan Gaussian pada data GPS ($\sigma = 0,2$ m) untuk mensimulasikan kondisi degradasi sinyal GPS.
+Pada kondisi pertama, sistem beroperasi tanpa injeksi derau GPS ($\sigma = 0$), sedangkan pada kondisi kedua, sistem beroperasi dengan injeksi derau Gaussian pada data GPS ($\sigma = 0,2$ m) untuk mensimulasikan kondisi degradasi sinyal GPS.
 Pengujian diukur berdasarkan Root Mean Square Error (RMSE) antara lintasan yang dihasilkan dengan metode Kalman Filter terhadap metode pembanding DLIO.
 Pada kondisi tanpa gangguan GPS, RMSE mencapai 0,404 meter, sedangkan pada kondisi dengan gangguan GPS, RMSE meningkat menjadi 0,705 meter.
 Sehingga terlihat bahwa injeksi kebisingan GPS meningkatkan RMSE sebesar 74,6\%, namun sistem tetap mampu bernavigasi sepanjang rute dengan aman tanpa ada masalah.

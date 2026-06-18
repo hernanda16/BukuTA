@@ -23,8 +23,8 @@ Pada estimasi kecepatan, terjadi perbedaan karakteristik yaitu data DLIO justru 
 Hal ini menunjukkan bahwa DLIO unggul dalam akurasi posisi namun memiliki estimasi kecepatan sesaat yang kurang halus, fenomena yang umum pada odometri berbasis LiDAR-IMU di mana estimasi kecepatan diperoleh dari diferensiasi posisi yang rentan terhadap derau.
 
 Pengujian pada 6 rute dengan panjang berbeda menunjukkan bahwa KF secara konsisten memiliki RMSE lebih rendah daripada GPS pada seluruh rute.
-Pada rute terpanjang robotika-k1mart (3431,6 m), RMSE KF 0,88 m berhasil menekan akumulasi eror yang mencapai 8,59 m pada odometri murni.
-Hasil ini membuktikan efektivitas fusi sensor dalam membatasi pertumbuhan eror seiring bertambahnya jarak tempuh dan slip yang disebabkan oleh kondisi jalan yang tidak ideal.
+Pada rute terpanjang robotika-k1mart (3431,6 m), RMSE KF 0,88 m berhasil menekan akumulasi galat yang mencapai 8,59 m pada odometri murni.
+Hasil ini membuktikan efektivitas fusi sensor dalam membatasi pertumbuhan galat seiring bertambahnya jarak tempuh dan slip yang disebabkan oleh kondisi jalan yang tidak ideal.
 
 Analisis pada area Rektorat juga memberikan bukti ketahanan KF terhadap degradasi GPS.
 Pada 9 iterasi dengan variasi waktu henti, GPS mengalami \emph{drift} signifikan dengan RMSE mencapai 9,43 m dengan waktu henti 20,8 detik, sementara KF mempertahankan RMSE dalam rentang 1,07--1,56 m.
@@ -59,7 +59,7 @@ Keberhasilan penyelesaian rute metode \emph{fusion} 100\% pada kedua skenario de
 
 Kegagalan mode \emph{vision} disebabkan oleh ketiadaan referensi arah global.
 Tanpa titik acuan GPS, algoritma gagal mengetahui kapan mengikuti tengah koridor jalan atau tetap lurus sehingga tidak mampu membedakan jalur utama dari \emph{side road} di persimpangan.
-Kegagalan mode GPS disebabkan oleh data titik acuan yang tidak benar-benar akurat karena hanya digunakan untuk menyediakan referensi rute global, sehingga eror sudut hadap dan lateral yang dialami kendaraan tidak dapat dikoreksi dengan baik, terutama pada segmen belok dan bundaran yang memerlukan perubahan arah signifikan.
+Kegagalan mode GPS disebabkan oleh data titik acuan yang tidak benar-benar akurat karena hanya digunakan untuk menyediakan referensi rute global, sehingga galat sudut hadap dan lateral yang dialami kendaraan tidak dapat dikoreksi dengan baik, terutama pada segmen belok dan bundaran yang memerlukan perubahan arah signifikan.
 
 Ketahanan sistem terhadap gangguan GPS diuji lebih lanjut melalui injeksi \emph{noise} Gaussian ($\sigma = 0,2$ m) pada data posisi GPS untuk meniru kondisi degradasi sinyal yang mungkin terjadi di lingkungan kampus.
 RMSE posisi meningkat 74,6\% dari 0,404 m menjadi 0,705 m, namun sistem tetap mampu bernavigasi sepanjang rute tanpa salah dalam memilih jalur.

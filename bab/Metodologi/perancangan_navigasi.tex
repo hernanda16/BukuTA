@@ -82,7 +82,7 @@ Alur kerja perencanaan rute global diilustrasikan pada Gambar~\ref{fig:diagram_n
 
 \subsubsection{Penyaringan \emph{Obstacle}}
 
-Titik \emph{pointcloud} yang diterima pada tahap perencanaan rute lokal pertama-tama disaring menggunakan informasi rute GPS.
+Titik \emph{point cloud} yang diterima pada tahap perencanaan rute lokal pertama-tama disaring menggunakan informasi rute GPS.
 Setiap titik \emph{obstacle} dilakukan pengecekan jarak tegak lurus (\emph{lateral filter}) dari rute global GPS.
 Titik yang berjarak lebih dari 5 m dari rute GPS dibuang karena terlalu jauh dengan rute global sehingga dianggap bukan sisi jalan yang sesuai atau valid.
 Pemilihan jarak 5 m ini berdasarkan pada lebar jalan di ITS sebesar 6 m, sehingga sisi jalan yang dianggap sebagai titik \emph{obstacle} tetap terdeteksi dengan baik ketika kendaraan berada di tepi jalan.
@@ -149,7 +149,7 @@ Sudut kemudi referensi $\theta_{\text{ref}}$ yang diperoleh dari tahap sebelumny
 Sebanyak 121 kandidat busur dibangkitkan pada rentang $-90$\textdegree\ hingga $+90$\textdegree\ dengan step $1{,}5$\textdegree.
 Untuk setiap busur, disimulasikan pergerakan kendaraan selama 2~detik dan diperiksa apakah terdapat \emph{obstacle} dalam jarak \emph{lethal} di setiap langkah simulasi.
 
-Setiap busur $a$ dievaluasi menggunakan fungsi skor yang terdiri dari dua variabel yaitu kedekatan arah terhadap sudut kemudi referensi dan jarak aman kendaraan terdahap \emph{obstacle} sebagaimana didefinisikan pada Persamaan~\eqref{eq:dwa_score} hingga~\eqref{eq:dwa_clearance}.:
+Setiap busur $a$ dievaluasi menggunakan fungsi skor yang terdiri dari dua variabel yaitu kedekatan arah terhadap sudut kemudi referensi dan jarak aman kendaraan terhadap \emph{obstacle} sebagaimana didefinisikan pada Persamaan~\eqref{eq:dwa_score} hingga~\eqref{eq:dwa_clearance}:
 
 \begin{equation}
 S(a) = w_h \cdot \exp\!\left(-\frac{|\Delta\theta(a)|}{\theta_s}\right) + w_c \cdot C(a)
@@ -178,7 +178,7 @@ Alur lengkap perencanaan rute lokal diilustrasikan pada Gambar~\ref{fig:diagram_
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{gambar/dwa_arc.png}
+    \includegraphics[width=0.8\textwidth]{gambar/dwa_arc.png}
     \caption{Ilustrasi evaluasi busur DWA berbasis \emph{arc fan}.}
     \label{fig:dwa_evaluation}
 \end{figure}

@@ -5,8 +5,8 @@
 \label{sec:hasilpenelitianterdahulu}
 
 Sejumlah penelitian mengenai segmentasi visual telah dilakukan, di antaranya oleh \textcite{Dharma2025PerformanceEvaluation} dan \textcite{wang2023internimage}.
-Penelitian \textcite{Dharma2025PerformanceEvaluation} menjelaskan bahwa performa \emph{DeepLabV3 Plus} dengan \emph{backbone} ResNet-50 yang dilatih dengan dataset lokal ITS pada malam hari mendapatkan performa paling baik mencapai \emph{mean Intersection over Union} (mIoU) 76,45\% dan \emph{Pixel Accuracy} 99,64\% pada kelas jalan.
-Sementara itu, penelitian \textcite{wang2023internimage} mengusulkan \emph{InternImage} sebagai \emph{backbone} segmentasi berbasis \emph{Deformable Convolution v3} (DCNv3) yang dipralatih dengan dataset global Mapillary Vistas dan dilakukan proses \emph{fine-tuning} pada dataset global Cityscapes, mendapatkan mIoU yang lebih tinggi yaitu 87,0\% pada dataset validasi Cityscapes.
+Penelitian \textcite{Dharma2025PerformanceEvaluation} menjelaskan bahwa performa \emph{DeepLabV3 Plus} dengan \emph{backbone} ResNet-50 yang dilatih dengan \emph{dataset} lokal ITS pada malam hari mendapatkan performa paling baik mencapai \emph{mean Intersection over Union} (mIoU) 76,45\% dan \emph{Pixel Accuracy} 99,64\% pada kelas jalan.
+Sementara itu, penelitian \textcite{wang2023internimage} mengusulkan \emph{InternImage} sebagai \emph{backbone} segmentasi berbasis \emph{Deformable Convolution v3} (DCNv3) yang dipralatih dengan \emph{dataset} global Mapillary Vistas dan dilakukan proses \emph{fine-tuning} pada \emph{dataset} global Cityscapes, mendapatkan mIoU yang lebih tinggi yaitu 87,0\% pada \emph{dataset} validasi Cityscapes.
 Terdapat juga penelitian yang berfokus pada optimalisasi model \emph{deep-learning} sehingga model dapat berjalan secara \emph{real-time} pada komputer kendaraan.
 Penelitian itu di antaranya adalah penelitian \textcite{zhou2022exploring} yang menunjukkan bahwa \emph{TensorRT} mampu mempercepat \emph{inference} model hingga 1,6-2 kali lipat melalui teknik \emph{layer fusion} dan optimalisasi memori, serta hingga 3,7 kali lipat dengan kuantisasi INT8 tanpa penurunan akurasi yang signifikan.
 Perbandingan penelitian segmentasi visual tersebut disajikan pada Tabel \ref{tab:perbandingan_terdahulu}.
@@ -29,7 +29,7 @@ Perbandingan penelitian segmentasi visual tersebut disajikan pada Tabel \ref{tab
 \end{table}
 
 Penelitian yang membahas lokalisasi dan perencanaan trajektori juga telah dilakukan, di antaranya oleh \textcite{Zazuli2024SensorFusion} dan \textcite{Philion2020LSS}.
-Hasil penelitian \textcite{Zazuli2024SensorFusion} mendapatkan rata-rata eror 0.43 m pada laju kontrol 50 Hz dengan menggabungkan data sensor GNSS, odometri roda, dan IMU dengan metode \emph{Extended Kalman Filter} (EKF).
+Hasil penelitian \textcite{Zazuli2024SensorFusion} mendapatkan rata-rata galat 0.43 m pada laju kontrol 50 Hz dengan menggabungkan data sensor GNSS, odometri roda, dan IMU dengan metode \emph{Extended Kalman Filter} (EKF).
 Sistem lokalisasi ini masih mengandalkan GPS sebagai acuan utama, sehingga ketika sinyal GPS terganggu, sistem tidak memiliki mekanisme untuk tetap bernavigasi.
 Sementara itu, penelitian \emph{trajectory sampling} dari \emph{Lift, Splat, Shoot} (LSS) oleh \textcite{Philion2020LSS} memperkenalkan mekanisme \emph{shooting} trajektori pada representasi \emph{Bird's Eye View} (BEV) yang memungkinkan pemilihan trajektori berdasarkan \emph{cost} terendah.
 
@@ -42,7 +42,7 @@ Sementara itu, penelitian \emph{trajectory sampling} dari \emph{Lift, Splat, Sho
 
 Segmentasi semantik visual merupakan proses klasifikasi setiap piksel pada citra ke dalam kelas tertentu, yang dalam konteks kendaraan otonom digunakan untuk mengenali area jalan yang dapat dilalui \parencite{wang2023internimage}.
 Berbeda dengan \emph{instance segmentation} yang membedakan objek individu, segmentasi semantik memberikan label pixel tanpa peduli informasi objek, sehingga lebih fokus pada pemahaman area jalan secara keseluruhan.
-Perbedaan ini ditunjukkan pada Gambar \ref{fig:segmentasi_visual} dimana semua piksel dilabeli berdasarkan kelasnya.
+Perbedaan ini ditunjukkan pada Gambar \ref{fig:segmentasi_visual} di mana semua piksel dilabeli berdasarkan kelasnya.
 
 \begin{figure}[H]
   \centering
@@ -54,7 +54,7 @@ Perbedaan ini ditunjukkan pada Gambar \ref{fig:segmentasi_visual} dimana semua p
 InternImage merupakan salah satu arsitektur \emph{backbone} segmentasi dengan \emph{Deformable Convolution v3} (DCNv3) yang memiliki keunggulan dalam mengatasi keterbatasan konvolusi reguler \parencite{wang2023internimage}.
 Tidak seperti pada konvolusi tradisional yang mengambil sampel piksel pada grid yang tetap, \emph{Deformable Convolution} mampu melakukan sampling piksel secara adaptif mengikuti bentuk objek pada citra seperti yang ditunjukkan pada Gambar \ref{fig:dcn}.
 Kemampuan ini sangat berguna pada bentuk jalan yang beragam, seperti tikungan atau persimpangan, sehingga model dapat mengenali area jalan dengan lebih akurat.
-Model ini menempati peringkat pertama di antara model \emph{open-source} segmentasi pada \emph{benchmark} Cityscapes pada kategori mIoU \emph{class} sehingga digunakan pada penelitian ini.
+Model ini menempati peringkat pertama di antara model \emph{open-source} segmentasi pada \emph{benchmark} Cityscapes pada kategori mIoU \emph{class}.
 
 
 \begin{figure}[H]
@@ -67,7 +67,7 @@ Model ini menempati peringkat pertama di antara model \emph{open-source} segment
 \emph{TensorRT} merupakan \emph{platform} optimasi \emph{inference} dari NVIDIA yang mempercepat eksekusi model \emph{deep learning} melalui dua teknik utama.
 Pertama, \emph{layer fusion} menggabungkan beberapa \emph{layer} yang berurutan menjadi satu operasi komputasi GPU, sehingga mengurangi \emph{overhead} pembacaan dan penulisan data antar \emph{layer} \parencite{zhou2022exploring}.
 Kedua, kuantisasi presisi ke \emph{half-precision floating-point} (FP16) mengurangi ukuran bobot model dari 32-bit menjadi 16-bit per parameter.
-Berbeda dengan kuantisasi INT8 yang memerlukan kalibrasi, FP16 tidak memerlukan dataset kalibrasi dan mempertahankan akurasi yang sangat dekat dengan presisi penuh \parencite{zhou2022exploring}.
+Berbeda dengan kuantisasi INT8 yang memerlukan kalibrasi, FP16 tidak memerlukan \emph{dataset} kalibrasi dan mempertahankan akurasi yang sangat dekat dengan presisi penuh \parencite{zhou2022exploring}.
 Kombinasi kedua teknik ini memungkinkan model segmentasi yang berukuran besar untuk dijalankan secara \emph{real-time} pada GPU kendaraan.
 
 \subsection{Kalibrasi Kamera dan Transformasi \emph{Bird's Eye View}}
@@ -224,3 +224,53 @@ Pemilihan trajektori optimal dari himpunan kandidat \emph{feasible} dilakukan me
 \end{equation}
 
 \noindent dengan $\omega_1$, $\omega_2$, $\omega_3$ adalah bobot masing-masing suku, $x_N$ adalah jarak maksimum lingkungan lokal, $f_d(x)$ adalah lintasan yang diinginkan, $s(x_i)$ adalah panjang busur, dan $\kappa_0$ adalah kurvatur kendaraan saat ini. Suku pertama memprioritaskan jarak pandang yang lebih jauh, suku kedua meminimalkan \emph{cross-track error}, dan suku ketiga menjaga kelancaran perubahan kemudi.
+
+\subsection{Direct LiDAR-Inertial Odometry}
+\label{subsec:dlio}
+
+Direct LiDAR-Inertial Odometry (DLIO) merupakan algoritma odometri yang memadukan data \emph{Light Detection and Ranging} (LiDAR) dengan sensor \emph{Inertial Measurement Unit} (IMU) untuk menghasilkan estimasi posisi dan orientasi kendaraan secara \emph{real-time} \parencite{Chen2023DLIO}.
+Berbeda dengan metode odometri LiDAR atau odometri LiDAR dan IMU yang memproses titik \emph{point cloud} secara berurutan, DLIO menggunakan pendekatan \emph{continuous-time motion correction} untuk mengoreksi distorsi gerak pada setiap titik \emph{point cloud} LiDAR.
+Distorsi ini timbul ketika kendaraan bergerak selama periode akuisisi data dan menjadi signifikan pada manuver agresif atau medan tidak rata.
+Hasil koreksi distorsi metode DLIO ditunjukkan pada Gambar \ref{fig:dlio_motion_correction} di mana \emph{point cloud} yang awalnya terdistorsi menjadi lebih rapi setelah dikoreksi.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{gambar/deskew.png}
+  \caption{Perbandingan \emph{point cloud} LiDAR sebelum (A) dan sesudah (B) koreksi distorsi gerak menggunakan DLIO \parencite{Chen2023DLIO}}
+  \label{fig:dlio_motion_correction}
+\end{figure}
+
+Algoritma ini menggunakan \emph{nonlinear geometric observer} yang memberikan estimasi \emph{state} dengan jaminan konvergensi kuat, yang digunakan untuk menginisialisasi integrasi IMU yang sensitif sehingga memungkinkan koreksi distorsi titik per titik secara cepat dan dapat diparalelkan.
+Validasi data DLIO dilakukan pada lima segmen pengujian dengan total panjang lintasan lebih dari 6 km.
+DLIO dalam konfigurasi \emph{continuous-time motion correction} mencatatkan RMSE terendah mencapai RMSE 0,0612 m pada lintasan sepanjang 97,2 m dan 0,32 m pada jarak 3063.42 m.
+Meskipun demikian, perlu dicatat bahwa DLIO tetap memiliki galat akumulatif sendiri karena berbasis odometri LiDAR-IMU.
+
+\subsection{Dynamic Window Approach}
+\label{subsec:dwa}
+
+\emph{Dynamic Window Approach} (DWA) merupakan metode perencanaan gerak lokal yang membangkitkan kandidat lintasan dalam ruang kecepatan (\emph{velocity space}) yang dapat dilalui bagi kendaraan \parencite{Cao2025SOADWA}. Ruang pencarian dibatasi oleh \emph{dynamic window} yaitu himpunan pasangan kecepatan linier dan sudut $(v, \omega)$ yang dapat dicapai kendaraan dalam periode waktu tertentu dengan mempertimbangkan keterbatasan akselerasi.
+
+Setiap kandidat lintasan dievaluasi menggunakan fungsi objektif yang terdiri dari tiga komponen:
+
+\begin{equation}
+G(v, \omega) = \alpha \cdot \text{heading}(v, \omega) + \beta \cdot \text{dist}(v, \omega) + \gamma \cdot \text{vel}(v, \omega),
+\label{eq:dwa_original}
+\end{equation}
+
+dengan $\alpha$, $\beta$, dan $\gamma$ adalah bobot masing-masing komponen. \emph{Heading} mengukur keselarasan arah gerak terhadap titik tujuan, \emph{dist} mengukur jarak terdekat ke \emph{obstacle} sepanjang lintasan, dan \emph{vel} mendorong kendaraan bergerak maju secepat mungkin \parencite{Cao2025SOADWA}. Kandidat dengan nilai $G$ tertinggi dipilih sebagai lintasan optimal.
+
+\subsection{Dijkstra untuk Perencanaan Rute Global}
+\label{subsec:global-planning}
+
+Algoritma Dijkstra adalah metode untuk mencari rute terpendek dari satu titik ke titik lain dalam jaringan jalan yang direpresentasikan sebagai graf \parencite{Cormen2001}. Graf terdiri dari simpul yang mewakili persimpangan atau segmen jalan, dan sisi yang mewakili hubungan antar segmen dengan bobot berupa jarak atau jumlah titik antara yang ditunjukkan pada Gambar \ref{fig:dijkstra_graph}.
+Algoritma ini menggunakan pendekatan \emph{greedy} untuk menemukan jalur terpendek dengan memanfaatkan struktur data \emph{priority queue} untuk menyimpan simpul yang akan dieksplorasi berikutnya.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{gambar/dijkstra.png}
+  \caption{Contoh graf untuk perencanaan rute global menggunakan algoritma Dijkstra \parencite{Cormen2001}}
+  \label{fig:dijkstra_graph}
+\end{figure}
+
+Algoritma bekerja secara bertahap yang dimulai dari simpul awal, algoritma mengunjungi simpul terdekat yang belum dikunjungi, kemudian memperbarui jarak ke simpul-simpul tetangganya jika ditemukan rute yang lebih pendek.
+Langkah ini diulang hingga semua simpul dikunjungi dan jarak terpendek ke seluruh simpul diketahui. Algoritma Dijkstra menjamin hasil optimal selama tidak ada sisi berbobot negatif, dengan waktu komputasi yang efisien untuk graf berskala ratusan simpul \parencite{Cormen2001}.

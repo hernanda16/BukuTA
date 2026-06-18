@@ -5,9 +5,6 @@ Setiap sensor diperlukan kalibrasi dan pengukuran nilai kovarians untuk menentuk
 
 \subsubsection{Kalibrasi IMU}
 
-% Perlu paper yang ngestate lebih dari 3 jam logging
-% Perlu paper allan variance
-% Perlu paper faktor inflasi untuk safety margin
 Kalibrasi IMU dilakukan dengan merekam data IMU yang terpasang pada kendaraan dalam kondisi diam dan berada di permukaan yang rata selama 4 jam untuk memastikan stabilitas data dan mendapatkan karakteristik yang sesuai.
 Data yang direkam kemudian dianalisis menggunakan metode Allan Variance dan mendapatkan hasil karakteristik yang ditampilkan pada Tabel~\ref{tab:allan_variance}.
 Kemudian nilai kalibrasi diberikan faktor inflasi untuk memberi margin keamanan dalam estimasi.
@@ -46,29 +43,27 @@ Proses ini diulang sebanyak 6 kali untuk mendapatkan rata-rata waktu tempuh yang
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{gambar/foto_kalibrasi_runtime.jpeg}
-        \caption{Dokumentasi proses kalibrasi kecepatan odometri roda menggunakan \emph{stopwatch}.}
+        \caption{Dokumentasi proses kalibrasi odometri roda menggunakan \emph{stopwatch}.}
         \label{fig:foto_kalibrasi_runtime}
     \end{subfigure}
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.25\textwidth}
         \centering
         \includegraphics[width=\textwidth]{gambar/start_omoda.jpeg}
         \caption{Omoda E5 ketika memulai proses kalibrasi kecepatan odometri roda.}
         \label{fig:foto_kalibrasi_omoda}
     \end{subfigure}
-    
-    \medskip
-    
-    \begin{subfigure}[b]{0.8\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{gambar/kalibrasi_runtime.png}
-        \caption{Rencana kalibrasi kecepatan odometri roda dengan mencatat waktu tempuh pada titik acuan.}
-        \label{fig:kalibrasi_runtime}
-    \end{subfigure}
-    \caption{Kalibrasi kecepatan odometri roda menggunakan metode pencatatan waktu tempuh pada titik acuan.}
+    \caption{Dokumentasi proses kalibrasi kecepatan odometri roda.}
     \label{fig:kalibrasi_odometri}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{gambar/kalibrasi_runtime.png}
+    \caption{Rencana kalibrasi kecepatan odometri roda dengan mencatat waktu tempuh pada titik acuan.}
+    \label{fig:kalibrasi_runtime}
 \end{figure}
 
 Varians kecepatan odometri roda diperoleh dengan mengoperasikan kendaraan pada kecepatan konstan 15 km/jam menggunakan fitur \emph{Cruise Control} pada jalan lurus dan datar.
@@ -126,7 +121,7 @@ ${R}_{gps}$                     & Dinamis & Diperbarui berdasarkan data akurasi 
 \end{table}
 
 Siklus Kalman Filter terdiri dari dua tahap utama yang dijalankan secara berulang.
-Pada tahap prediksi, akselerasi IMU yang telah dirotasi ke kerangka ENU digunakan untuk memproyeksikan \emph{state} dan kovarians ke langkah waktu berikutnya melalui model sistem kontrol masukkan.
+Pada tahap prediksi, akselerasi IMU yang telah dirotasi ke kerangka ENU digunakan untuk memproyeksikan \emph{state} dan kovarians ke langkah waktu berikutnya melalui model sistem kontrol masukan.
 Pada tahap koreksi, terdapat dua sumber pengukuran yang digunakan yaitu data GPS dan data odometri roda.
 Pengukuran GPS digunakan untuk mengoreksi posisi dan kecepatan \emph{state}, sedangkan odometri roda hanya mengoreksi kecepatan \emph{state}.
 
@@ -197,7 +192,7 @@ Penggunaan kuadrat bertujuan memberikan efek yang lebih signifikan ketika \emph{
 
 Pengujian lokalisasi direncanakan dalam empat kategori.
 Pertama, validasi terhadap data aktual posisi menggunakan pengukuran fisik dengan pita ukur dan \emph{stopwatch} pada lintasan pendek untuk memperoleh nilai akurasi Kalman Filter.
-Kedua, pengujian performa Kalman Filter pada berbagai rute dengan panjang dan karakteristik jalan yang berbeda, menggunakan DLIO sebagai metode pembanding.
+Kedua, pengujian performa Kalman Filter pada berbagai rute dengan panjang dan karakteristik jalan yang berbeda, menggunakan DLIO sebagai metode pembanding. DLIO dipilih sebagai \emph{baseline} karena akurasinya yang tinggi dan konsisten pada berbagai kondisi lintasan, dengan RMSE hanya 0,0612 m pada segmen dinamis menurut pengujian yang dilakukan oleh \textcite{Chen2023DLIO}.
 Ketiga, pengujian ketahanan terhadap degradasi GPS secara alami pada area dengan gedung tinggi untuk mengevaluasi kemampuan sistem mempertahankan estimasi posisi.
 Keempat, karakterisasi akurasi sudut hadap pada area terbuka untuk mengetahui hubungan antara kualitas sinyal GPS dan akurasi orientasi IMU.
 

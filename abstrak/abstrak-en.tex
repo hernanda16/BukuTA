@@ -21,7 +21,16 @@
 \end{tabularx}
 \endgroup
 
-% [TEMPLATE] Isi paragraf berikut dengan abstrak Bahasa Inggris (terjemahan dari abstrak Indonesia).
-\emph{Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.}
+\begin{sloppypar}
+Autonomous vehicle navigation in campus environments heavily relies on GPS, which is prone to accuracy degradation due to tall buildings and trees.
+This research aims to integrate visual segmentation with GPS data to produce adaptive turning maneuvers and reduce navigation dependence on GPS.
+The system consists of four subsystems which include visual perception using InternImage with TensorRT (18 FPS, mIoU 0.9574), localization using a Kalman Filter fusing GPS, IMU, and wheel odometry (RMSE 0.173 m against ground truth), global route planning using Dijkstra algorithm, and local planning using Dynamic Window Approach with Arc Fan.
+Sensors used include a Leopard 120\textdegree camera, u-blox ZED-F9P GPS, RION TL740D IMU, and wheel odometry integrated through ROS2.
+Testing on an Omoda E5 vehicle at ITS campus shows that the fusion mode achieves 100\% route completion rate with destination accuracy below 1 meter, while standalone vision and GPS modes failed to complete all trials.
+On a 3.7 km long-distance test, the position RMSE was 1.08 m with a maximum deviation of 1.99 m.
+The system also maintained navigation during GPS degradation, with RMSE of 1.07--1.56 m in the Rectorate building area and 0.705 m under injected gaussian noise simulation.
+The results demonstrate that integrating visual segmentation with GPS data is a necessary condition for reliable campus navigation, particularly in areas with satellite signal degradation.
+This approach provides a more robust navigation solution compared to using GPS independently.
+\end{sloppypar}
 
-\emph{Keywords}: \emph{Keyword 1}, \emph{Keyword 2}, \emph{Keyword 3}, \emph{Keyword 4}, \emph{Keyword 5}
+\emph{Keywords}: \emph{Autonomous Vehicle Navigation, Visual Segmentation, Kalman Filter, GPS, DWA}

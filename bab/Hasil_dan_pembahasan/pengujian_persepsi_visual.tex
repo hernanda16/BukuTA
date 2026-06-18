@@ -1,7 +1,66 @@
+\subsubsection{Validasi Kalibrasi Kamera dan Transformasi BEV}
+\label{sec:validasi_bev}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gambar/camera_before.png}
+        \caption{Citra asli dengan distorsi lensa}
+        \label{fig:camera_before}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gambar/camera_rectified.png}
+        \caption{Citra setelah kalibrasi dan \emph{rectification}}
+        \label{fig:camera_after}
+    \end{subfigure}
+    \medskip
+    \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gambar/projection_model_cam.png}
+        \caption{Model proyeksi kamera hasil kalibrasi Scaramuzza.}
+        \label{fig:projection_model}
+    \end{subfigure}
+    \caption{Hasil kalibrasi kamera menggunakan metode Scaramuzza.}
+    \label{fig:camera_calibration}
+\end{figure}
+
+Citra yang awalnya mengalami distorsi lensa (Gambar \ref{fig:camera_before}) telah berhasil dikoreksi menjadi citra yang lebih geometris (Gambar \ref{fig:camera_after}) sesuai dengan dunia nyata. Model proyeksi kamera berupa parameter intrinsik dan koefisien polinomial yang memetakan koordinat piksel pada citra ke koordinat 3D di dunia nyata ditampilkan pada Gambar \ref{fig:projection_model}. Model proyeksi ini digunakan untuk membangun matriks transformasi yang mampu memetakan piksel citra dari koordinat 2D menjadi koordinat 3D, sehingga memungkinkan konversi dari citra kamera ke tampilan tampak atas (BEV).
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gambar/kalibrasi_foto.jpg}
+        \caption{Tampilan kamera tampak depan ketika validasi transformasi BEV}
+        \label{fig:kalibrasi_1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.8\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gambar/kalibrasi_plan.png}
+        \caption{Dimensi dan penempatan papan kalibrasi untuk validasi transformasi BEV}
+        \label{fig:kalibrasi_2}
+    \end{subfigure}
+    \caption{Validasi transformasi BEV menggunakan papan kalibrasi.}
+    \label{fig:proses_bev_calibration}
+\end{figure}
+
+Validasi transformasi BEV dilakukan dengan menggunakan papan kalibrasi yang ditempatkan sejauh 8 meter di depan kendaraan yang diukur dari pusat kamera. Penempatan papan yang ditunjukkan pada Gambar \ref{fig:kalibrasi_1} memungkinkan pengukuran jarak secara akurat menggunakan pita ukur. Terdapat 2 papan kalibrasi yang diletakkan sejajar dengan jarak antar papan sebesar 2,5 meter, masing-masing memiliki panjang 2,44 meter dan lebar 1,22 meter (Gambar \ref{fig:kalibrasi_2}). Citra ketika proses kalibrasi ditransformasikan menggunakan matriks transformasi dari kalibrasi Scaramuzza sehingga menghasilkan citra BEV yang menunjukkan posisi papan kalibrasi sesuai dengan jarak sebenarnya, sebagaimana ditunjukkan pada Gambar \ref{fig:bev_validation}. Hasil validasi menunjukkan bahwa transformasi BEV mampu memetakan piksel citra ke koordinat dunia nyata dengan akurasi yang dapat diterima, sehingga dapat digunakan untuk konversi mask segmentasi visual ke representasi \emph{point cloud} yang akurat bagi perencanaan navigasi.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{gambar/hasil_kalibrasi_bev_gambar.png}
+    \caption{Hasil validasi transformasi BEV menggunakan papan kalibrasi}
+    \label{fig:bev_validation}
+\end{figure}
+
 \subsubsection{Akurasi Segmentasi InternImage}
 \label{sec:akurasi_segmentasi}
 
-Model InternImage dengan backbone DCNv3~\parencite{wang2023internimage} dilatih pada dataset lokal kampus ITS melalui \emph{fine-tuning} dari bobot pralatih Mapillary Vistas.
+Model InternImage dengan backbone DCNv3~\parencite{wang2023internimage} dilatih pada \emph{dataset} lokal kampus ITS melalui \emph{fine-tuning} dari bobot pralatih Mapillary Vistas.
 Proses pelatihan dilakukan selama 50 epoch menggunakan \emph{loss function Cross-Entropy}.
 Kurva pelatihan dan validasi disajikan pada Gambar~\ref{fig:training_curve}.
 
@@ -17,7 +76,7 @@ Performa terbaik dicapai pada epoch ke-31 dengan metrik yang ditampilkan Tabel~\
 
 \begin{table}[H]
 \centering
-\caption{Hasil pelatihan model InternImage pada dataset lokal ITS}
+\caption{Hasil pelatihan model InternImage pada \emph{dataset} lokal ITS}
 \label{tab:metrik_segmentasi}
 \begin{tabular}{l c}
 \hline
@@ -30,7 +89,7 @@ mIoU            & 0,9574 \\
 \end{tabular}
 \end{table}
 
-Nilai mIoU sebesar 0,9574 menunjukkan bahwa model mampu melakukan segmentasi area jalan dengan akurasi tinggi pada dataset lokal ITS.
+Nilai mIoU sebesar 0,9574 menunjukkan bahwa model mampu melakukan segmentasi area jalan dengan akurasi tinggi pada \emph{dataset} lokal ITS.
 Hasil ini lebih tinggi dibandingkan dengan penelitian sebelumnya di lingkungan yang sama yang menggunakan DeepLabV3+ dengan mIoU 0,7645~\parencite{Dharma2025PerformanceEvaluation}.
 
 \subsubsection{Laju Inferensi \emph{Real-time}}
@@ -73,7 +132,7 @@ TensorRT (C++)  & $\pm$18 & $\pm$9$\times$ \\
     \label{fig:tensorrt_conditions}
 \end{figure}
 
-Dengan TensorRT, inferensi mencapai sekitar 18 FPS (rentang 15--19 FPS) seperti yang ditampilkan pada Gambar~\ref{fig:tensorrt_fps}, yang sudah memadai untuk navigasi \emph{real-time} pada kecepatan rendah ($\pm$8 km/jam).
+Dengan TensorRT, inferensi mencapai sekitar 18 FPS (rentang 15--19 FPS) seperti yang ditampilkan pada Gambar~\ref{fig:tensorrt_conditions}, yang sudah memadai untuk navigasi \emph{real-time} pada kecepatan rendah ($\pm$8 km/jam).
 Model Pytorch hanya mencapai sekitar 2 FPS sehingga tidak layak untuk aplikasi navigasi karena akan menyebabkan keterlambatan dalam pengambilan keputusan dan potensi risiko keselamatan.
 
 \subsubsection{Konversi Mask ke \emph{Point Cloud}}

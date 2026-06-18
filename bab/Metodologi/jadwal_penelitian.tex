@@ -7,7 +7,7 @@ Data visual dikumpulkan melalui perekaman kamera depan kendaraan pada berbagai k
 Secara paralel, data sensor navigasi (GPS, IMU, dan odometri) direkam untuk keperluan pengembangan dan pengujian modul lokalisasi.
 
 Tahap perancangan sistem meliputi empat subsistem utama.
-Pertama, \emph{pipeline} persepsi visual yang mencakup pelatihan model InternImage dengan \emph{fine-tuning} pada dataset lokal ITS, konversi model ke \emph{engine} TensorRT, dan implementasi modul konversi masker biner ke \emph{point cloud}.
+Pertama, \emph{pipeline} persepsi visual yang mencakup pelatihan model InternImage dengan \emph{fine-tuning} pada \emph{dataset} lokal ITS, konversi model ke \emph{engine} TensorRT, dan implementasi modul konversi masker biner ke \emph{point cloud}.
 Kedua, modul lokalisasi menggunakan Kalman Filter 4-keadaan yang memfusikan data GPS, IMU, dan odometri roda.
 Ketiga, perencanaan global berbasis graf segmen jalan dan algoritma Dijkstra.
 Keempat, perencanaan lokal berbasis \emph{corridor pursuit} dengan \emph{dual-mode target heading} yang mengintegrasikan data visual dan GPS.
